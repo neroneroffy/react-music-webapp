@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import Index from './components/index'
-import './style.less'
-
+import { Provider } from 'react-redux';
+import store from './store';
+import Router from './router';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Index></Index>
-      </div>
+      <Provider store={store}>
+          <div className="App">
+            <Router></Router>
+          </div>
+      </Provider>
     );
   }
 }
