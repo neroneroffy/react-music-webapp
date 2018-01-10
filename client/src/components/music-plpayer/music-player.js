@@ -23,9 +23,10 @@ class MusicPlayer extends Component {
     }
     componentWillReceiveProps(nextProps){
 
-        if(nextProps.music.songs !== this.state.music){
+        if(nextProps.music !== this.state.music){
+
             this.setState({
-                music:nextProps.music.songs
+                music:nextProps.music
             })
         }
 
@@ -36,19 +37,21 @@ class MusicPlayer extends Component {
 
     }
     render() {
-        console.log(this.state.music);
+
         return (
             <div id="music-player">
+
                 {
-                    this.props.music.songs?
+                    this.props.music.shouldRender?
                         <Player
-                            info={this.state.music}
+                            info={this.state.music.songs}
                             onDel = {this.delSong}
                         >
                         </Player>
                         :
                         ""
                 }
+
             </div>
         )
     }

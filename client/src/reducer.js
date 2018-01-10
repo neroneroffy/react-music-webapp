@@ -3,7 +3,9 @@
  */
 import { combineReducers } from 'redux';
 import { music } from './redux/player.redux';
+import { repertoire } from './redux/repertoire.redux';
 const rootReducer = combineReducers({
-    music
+    music,
+    repertoire
 });
 export default rootReducer

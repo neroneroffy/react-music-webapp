@@ -39,28 +39,37 @@ class Player extends Component {
         this.delMusic = this.delMusic.bind(this)
 
     }
+
     componentDidMount(){
         let audio = this.refs.audio;
+        let played = this.refs.played;
+        let totalVolume = this.refs.totalVolume;
+        console.log(this.props.info);
         this.setState({
             currentMusic:this.props.info[0]
+        },()=>{
+
+            audio.addEventListener('canplay',()=>{
+                //获取总时间
+                let totalTime = parseInt(audio.duration);
+                this.setState({
+                    totalTime:this.getTime(totalTime),
+                    remainTime:this.getTime(totalTime),
+                    playedLeft:played.getBoundingClientRect().left,
+                    volumnLeft:totalVolume.getBoundingClientRect().left
+                });
+                //
+            })
         });
-        console.log(this.props)
-        audio.addEventListener('canplay',()=>{
-            //获取总时间
-            let totalTime = parseInt(this.refs.audio.duration);
-            this.setState({
-                totalTime:this.getTime(totalTime),
-                remainTime:this.getTime(totalTime),
-                playedLeft:this.refs.played.getBoundingClientRect().left,
-                volumnLeft:this.refs.totalVolume.getBoundingClientRect().left
-            });
-            //
-        })
+
         //设置初始音量
         this.refs.volumeProgress.style.width = "50%";
         audio.volume = 0.5
-
     }
+/*    componentWillUnmount(){
+        let audio = this.refs.audio;
+        audio.removeEventListener('canplay')
+    }*/
     last(){
 
         if(!this.state.currentMusic.src){
@@ -339,6 +348,7 @@ class Player extends Component {
 
     }
     render() {
+
         return (
             <div id="react-music-player">
                 <div className="react-music-player-wrapper">

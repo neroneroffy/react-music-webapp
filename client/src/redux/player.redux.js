@@ -1,9 +1,8 @@
 /**
  * Created by haita on 2018/1/8 0008.
  */
-const initState={
-};
-const songInfo = [
+const GET_MUSIC = 'GET_MUSIC';
+const songsData = [
     {
         src:"http://qqma.tingge123.com:83/123/2016/10/青蛙乐队 - 小跳蛙.mp3",
         artist:"青蛙乐队",
@@ -69,17 +68,19 @@ const songInfo = [
         id:"66575568448"
     },
     ]
-
-const GET_MUSIC = 'GET_MUSIC';
-export function music(state=initState,action) {
+const initialState = {
+    songs:[],
+    shouldRender:false
+};
+//reducer
+export function music(state=initialState,action) {
     switch (action.type){
         case GET_MUSIC:
-            return {songs:songInfo}
+            return {...state,songs:songsData,shouldRender:true};
         default:
-            return {state}
+            return state
     }
 }
-
 function musicAction(){
     return {
         type:GET_MUSIC

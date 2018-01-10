@@ -17,7 +17,6 @@ class Container extends Component {
     }
     render() {
         const match = this.props.match;
-        console.log(`${match.url}/me`)
         return (
             <div id="container">
                 <Tabbar></Tabbar>
