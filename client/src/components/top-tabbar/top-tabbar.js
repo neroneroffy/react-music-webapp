@@ -10,15 +10,18 @@ class TopTabbar extends Component {
             entry:[
                 {
                     name:"曲库",
-                    path:`${this.props.match.url}/repertoire`
+                    path:`${this.props.match.url}/repertoire`,
+                    icon:require('../../icons/music.png')
                 },
                 {
                     name:"我的",
-                    path:`${this.props.match.url}/me`
+                    path:`${this.props.match.url}/me`,
+                    icon:require('../../icons/user.png')
                 },
                 {
                     name:"发现",
-                    path:`${this.props.match.url}/discover`
+                    path:`${this.props.match.url}/discover`,
+                    icon:require('../../icons/headphones.png')
                 }
 
             ]
@@ -37,7 +40,13 @@ class TopTabbar extends Component {
                             to={v.path}
                             activeClassName="current"
                         >
-                            {v.name}
+                            <div>
+                                <img src={v.icon} alt=""/>
+                            </div>
+                            <div>
+                                {v.name}
+                            </div>
+
                         </NavLink>
                     ))
                 }

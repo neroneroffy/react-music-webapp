@@ -62,6 +62,7 @@ class Player extends Component {
 
     }
     last(){
+
         if(!this.state.currentMusic.src){
             return
         }
@@ -348,6 +349,7 @@ class Player extends Component {
                             <span className="icon-next" onClick={this.next}></span>
                         </div>
                         <div className="music-box">
+
                             <div className="picture">
                                 {
                                     this.state.currentMusic.src?
