@@ -4,14 +4,18 @@
 import axios from 'axios';
 
 const FETCH_BANNER = "FETCH_BANNER";
+const FETCH_RECOMMEND = "FETCH_RECOMMEND";
 const initialState = {
-    data:[]
+    bannerData:[],
+    recommendData:[]
 };
 //reducer
 export function repertoire(state=initialState,action) {
     switch (action.type){
         case FETCH_BANNER:
-            return {...state,data:action.payload};
+            return {...state,bannerData:action.payload};
+        case FETCH_RECOMMEND:
+            return {...state,recommendData:action.payload};
         default:
             return state
     }
@@ -23,13 +27,34 @@ function bannerdata(data) {
         type:FETCH_BANNER
     }
 }
+function recommendData(data) {
+    return {
+        payload:data,
+        type:FETCH_RECOMMEND
+    }
+}
 
 //用户调用的dispatch action的函数
+//获取banner
 export function fetchBanner() {
     return dispatch=>{
         axios.get('/mock/banner.json').then(res=>{
             let data = res.data;
-            dispatch(bannerdata(data.data))
+            if(data.result){
+                dispatch(bannerdata(data.data))
+            }
+        })
+    }
+}
+
+//获取每日推荐
+export function fetchRecommend() {
+    return dispatch=>{
+        axios.get('/mock/recommend.json').then(res=>{
+            let data = res.data;
+            if(data.result){
+                dispatch(recommendData(data.data))
+            }
         })
     }
 }

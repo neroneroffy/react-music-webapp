@@ -1,0 +1,33 @@
+
+.wing-blank{
+  width:92%;
+  margin:0 auto;
+}
+.banner{
+  .wing-blank;
+  margin-top:15px;
+  .banner-img{
+    width: 100%;
+    vertical-align: top
+  }
+}
+.recommend{
+  .wing-blank;
+  overflow: hidden;
+  .recommend-wrapper{
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    div {
+      display: inline-block;
+      font-size: 0;
+      margin-right: 10px;
+      &:last-child{
+        margin-right: 0;
+      }
+      img{
+        width: 90px;
+      }
+    }
+  }
+}

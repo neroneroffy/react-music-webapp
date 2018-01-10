@@ -44,7 +44,7 @@ class Player extends Component {
         let audio = this.refs.audio;
         let played = this.refs.played;
         let totalVolume = this.refs.totalVolume;
-        console.log(this.props.info);
+
         this.setState({
             currentMusic:this.props.info[0]
         },()=>{

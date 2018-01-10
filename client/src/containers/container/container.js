@@ -3,7 +3,6 @@ import { Route,withRouter } from 'react-router-dom';
 import Repertoire from '../repertoire/repertoire';
 import Me from '../me/me';
 import Discover from '../discover/discover';
-import Tabbar from '../../components/top-tabbar/top-tabbar'
 @withRouter
 class Container extends Component {
     constructor(props) {
@@ -11,18 +10,17 @@ class Container extends Component {
         this.state = {}
     }
     componentDidMount(){
-        if(window.location.pathname === '/index'){
-            this.props.history.push('/index/repertoire')
+        /*用正则匹配出来pathname*/
+        if(this.props.location.pathname === '/'){
+            this.props.history.push('/repertoire')
         }
     }
     render() {
-        const match = this.props.match;
         return (
             <div id="container">
-                <Tabbar></Tabbar>
-                <Route path={`${match.url}/repertoire`} component={Repertoire}></Route>
-                <Route path={`${match.url}/me`} component={Me}></Route>
-                <Route path={`${match.url}/discover`} component={Discover}></Route>
+                <Route path={`/repertoire`} component={Repertoire}></Route>
+                <Route path={`/me`} component={Me}></Route>
+                <Route path={`/discover`} component={Discover}></Route>
             </div>
         )
     }

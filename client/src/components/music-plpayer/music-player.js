@@ -18,9 +18,7 @@ class MusicPlayer extends Component {
     componentWillMount(){
         this.props.getMusic()
     }
-    componentDidMount(){
 
-    }
     componentWillReceiveProps(nextProps){
 
         if(nextProps.music !== this.state.music){
