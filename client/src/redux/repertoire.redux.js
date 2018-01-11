@@ -5,9 +5,11 @@ import axios from 'axios';
 
 const FETCH_BANNER = "FETCH_BANNER";
 const FETCH_RECOMMEND = "FETCH_RECOMMEND";
+const FETCH_SONGS = "FETCH_SONGS";
 const initialState = {
     bannerData:[],
-    recommendData:[]
+    recommendData:[],
+    reSongsData:[]
 };
 //reducer
 export function repertoire(state=initialState,action) {
@@ -16,6 +18,8 @@ export function repertoire(state=initialState,action) {
             return {...state,bannerData:action.payload};
         case FETCH_RECOMMEND:
             return {...state,recommendData:action.payload};
+        case FETCH_SONGS:
+            return {...state,reSongsData:action.payload};
         default:
             return state
     }
@@ -31,6 +35,12 @@ function recommendData(data) {
     return {
         payload:data,
         type:FETCH_RECOMMEND
+    }
+}
+function reSongsData(data) {
+    return {
+        payload:data,
+        type:FETCH_SONGS
     }
 }
 
@@ -54,6 +64,18 @@ export function fetchRecommend() {
             let data = res.data;
             if(data.result){
                 dispatch(recommendData(data.data))
+            }
+        })
+    }
+}
+
+//获取曲库好歌
+export function fetchReSongsData() {
+    return dispatch=>{
+        axios.get('/mock/songs.json').then(res=>{
+            let data = res.data;
+            if(data.result){
+                dispatch(reSongsData(data.data))
             }
         })
     }

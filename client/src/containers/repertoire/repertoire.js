@@ -1,25 +1,28 @@
 import React, {Component} from 'react';
 import { Carousel } from 'antd-mobile';
 import WhiteSpace from '../../components/whiteSpace'
-import Title from '../../components/title'
-import {fetchBanner,fetchRecommend} from '../../redux/repertoire.redux';
+import Title from '../../components/title';
+import SongsList from '../../components/songs-list/songs-list'
+import {fetchBanner,fetchRecommend,fetchReSongsData} from '../../redux/repertoire.redux';
 import { connect } from 'react-redux';
 import './repertoire.less';
 @connect(
     state=>state.repertoire,
-    {fetchBanner,fetchRecommend}
+    {fetchBanner,fetchRecommend,fetchReSongsData}
 )
 class Repertoire extends Component {
     constructor(props) {
         super(props)
         this.state = {
             data:this.props.bannerData
-        }
+        };
     }
     componentDidMount(){
-        this.props.fetchBanner()
-        this.props.fetchRecommend()
+        this.props.fetchBanner();
+        this.props.fetchRecommend();
+        this.props.fetchReSongsData()
     }
+
     render() {
         return (
             <div id="repertoire">
@@ -57,12 +60,20 @@ class Repertoire extends Component {
                     <div className="recommend-wrapper">
                         {
                             this.props.recommendData.map(v=>(
-                                <div key={v.src}>
-                                    <img src={v.src} alt=""/>
+                                <div key={v.src} className="recommend-item">
+                                    <div>
+                                        <img src={v.src} alt=""/>
+                                    </div>
+                                    <div className="item-name">{v.name}</div>
                                 </div>
                             ))
                         }
                     </div>
+                </div>
+                <WhiteSpace></WhiteSpace>
+                <div className="songs">
+                    <Title title="曲库好歌"></Title>
+                    <SongsList songs={this.props.reSongsData}></SongsList>
                 </div>
             </div>
         )

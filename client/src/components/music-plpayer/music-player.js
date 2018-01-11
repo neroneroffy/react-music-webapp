@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import Player from '../player/player';
 import { connect } from 'react-redux';
-import { getMusic } from '../../redux/player.redux';
-
+import { getMusic,delMusic } from '../../redux/player.redux';
+import './music-player.less'
 @connect(
     state=>state,
-    { getMusic }
+    { getMusic,delMusic }
 )
 class MusicPlayer extends Component {
     constructor(props){
@@ -18,24 +18,24 @@ class MusicPlayer extends Component {
     componentWillMount(){
         this.props.getMusic()
     }
-
     componentWillReceiveProps(nextProps){
 
+        //设置播放列表
         if(nextProps.music !== this.state.music){
-
             this.setState({
                 music:nextProps.music
             })
         }
 
     }
-    delSong(i,id){
+    delSong(id){
         console.log(id)
+        console.log(this.props)
+        this.props.delMusic(id)
         //this.state.songInfo.splice(i,1)
 
     }
     render() {
-
         return (
             <div id="music-player">
 
@@ -44,6 +44,7 @@ class MusicPlayer extends Component {
                         <Player
                             info={this.state.music.songs}
                             onDel = {this.delSong}
+                            currentSong = {this.props.music.currentSong}
                         >
                         </Player>
                         :

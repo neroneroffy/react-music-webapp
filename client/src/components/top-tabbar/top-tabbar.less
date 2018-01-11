@@ -1,5 +1,10 @@
 #top-tabbar{
     background:linear-gradient( 22deg, rgb(246,139,14) 0%, rgb(255, 208, 0) 80%);
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 1000;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     a {
@@ -8,7 +13,7 @@
       display: block;
       width: 33.33333%;
       text-align: center;
-      height: 75px;
+      height: 68px;
       div:nth-child(1){
         margin-top: 15px;
       }
@@ -18,18 +23,6 @@
     }
     .current{
       position: relative;
-      &:after{
-        content: "";
-        display: block;
-        width: 0;
-        height: 0;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-bottom: 10px solid #fff;
-        position: absolute;
-        bottom:0;
-        left:50%;
-        margin-left: -10px;
-      }
+      text-shadow:0 0 3px #fff,-0 -0 3px #fff;
     }
 }

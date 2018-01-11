@@ -2,6 +2,9 @@
  * Created by haita on 2018/1/8 0008.
  */
 const GET_MUSIC = 'GET_MUSIC';
+const ADD_MUSIC = 'ADD_MUSIC';
+const THIS_MUSIC = 'THIS_MUSIC';
+const DEL_MUSIC = 'DEL_MUSIC';
 const songsData = [
     {
         src:"http://qqma.tingge123.com:83/123/2016/10/青蛙乐队 - 小跳蛙.mp3",
@@ -69,6 +72,7 @@ const songsData = [
     },
     ]
 const initialState = {
+    currentSong:"",
     songs:[],
     shouldRender:false
 };
@@ -77,6 +81,12 @@ export function music(state=initialState,action) {
     switch (action.type){
         case GET_MUSIC:
             return {...state,songs:songsData,shouldRender:true};
+        case ADD_MUSIC:
+            return {...state,songs:songsData};
+        case DEL_MUSIC:
+            return {...state,songs:action.payload};
+        case THIS_MUSIC:
+            return {...state,currentSong:action.payload};
         default:
             return state
     }
@@ -86,8 +96,53 @@ function musicAction(){
         type:GET_MUSIC
     }
 }
+function addAction(data){
+    return {
+        type:ADD_MUSIC,
+        payload:data
+    }
+}
+function delAction(data){
+    return {
+        type:DEL_MUSIC,
+        payload:data
+    }
+}
+function playThisAction(data){
+    return {
+        type:THIS_MUSIC,
+        payload:data
+    }
+}
 export function getMusic () {
     return dispatch=>{
         dispatch(musicAction())
+    }
+}
+export function addMusic (data) {
+    songsData.push(data)
+    return dispatch=>{
+        dispatch(addAction(data))
+    }
+}
+export function delMusic (id) {
+    let index = ""
+    songsData.forEach((v,i)=>{
+        if(v.id === id){
+            index = i
+        }
+    });
+
+    songsData.splice(index+1,1);
+    console.log(songsData)
+    return dispatch=>{
+        dispatch(delAction(songsData))
+    }
+
+
+}
+export function playThis (data) {
+    return dispatch=>{
+        dispatch(playThisAction(data))
     }
 }

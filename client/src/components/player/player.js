@@ -7,12 +7,13 @@ class Player extends Component {
         super(props);
         this.state = {
             isPaused:false,
-            totalTime:0,
+            totalTime:"00:00",
+            remainTime:"00:00",
             playPer:0,
             bufferedPer:0,
             playedLeft:0,
             volumnLeft:0,
-            remainTime:0,
+
             angle:0,
             mouseDown:false,
             musicListShow:false,
@@ -37,30 +38,30 @@ class Player extends Component {
         this.showMusicList = this.showMusicList.bind(this)
         this.mouseLeave = this.mouseLeave.bind(this)
         this.delMusic = this.delMusic.bind(this)
-
     }
 
     componentDidMount(){
         let audio = this.refs.audio;
         let played = this.refs.played;
         let totalVolume = this.refs.totalVolume;
+        audio.addEventListener('canplay',()=>{
+            //获取总时间
+            let totalTime = parseInt(audio.duration);
+            this.setState({
+                totalTime:this.getTime(totalTime),
+                remainTime:this.getTime(totalTime),
+                playedLeft:played.getBoundingClientRect().left,
+                volumnLeft:totalVolume.getBoundingClientRect().left
+            });
+            //
+        });
+        //在组件最开始渲染时候，默认播放播放列表第一首歌
 
-        this.setState({
+/*        this.setState({
             currentMusic:this.props.info[0]
         },()=>{
 
-            audio.addEventListener('canplay',()=>{
-                //获取总时间
-                let totalTime = parseInt(audio.duration);
-                this.setState({
-                    totalTime:this.getTime(totalTime),
-                    remainTime:this.getTime(totalTime),
-                    playedLeft:played.getBoundingClientRect().left,
-                    volumnLeft:totalVolume.getBoundingClientRect().left
-                });
-                //
-            })
-        });
+        });*/
 
         //设置初始音量
         this.refs.volumeProgress.style.width = "50%";
@@ -70,6 +71,16 @@ class Player extends Component {
         let audio = this.refs.audio;
         audio.removeEventListener('canplay')
     }*/
+    componentWillReceiveProps(nextProps){
+        if(nextProps.currentSong !== this.state.currentMusic && nextProps.currentSong !== undefined){
+            this.setState({
+                currentMusic:nextProps.currentSong
+            },()=>{
+                this.play()
+            })
+        }
+
+    }
     last(){
 
         if(!this.state.currentMusic.src){

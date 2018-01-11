@@ -1,8 +1,11 @@
-
+#repertoire{
+  margin:83px 0 90px 0
+}
 .wing-blank{
   width:92%;
   margin:0 auto;
 }
+/*banner*/
 .banner{
   .wing-blank;
   margin-top:15px;
@@ -11,16 +14,16 @@
     vertical-align: top
   }
 }
+/*每日推荐*/
 .recommend{
   .wing-blank;
-  overflow: hidden;
+  overflow-x: hidden;
   .recommend-wrapper{
     width: 100%;
     overflow-x: auto;
     white-space: nowrap;
-    div {
+    .recommend-item {
       display: inline-block;
-      font-size: 0;
       margin-right: 10px;
       &:last-child{
         margin-right: 0;
@@ -28,6 +31,18 @@
       img{
         width: 90px;
       }
+      .item-name{
+        font-size: 12px;
+        color: #666666;
+        margin-top: 5px;
+      }
     }
   }
 }
+
+/*曲库好歌*/
+.songs{
+  .wing-blank;
+}
+
+
