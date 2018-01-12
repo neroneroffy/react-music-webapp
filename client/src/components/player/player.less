@@ -58,15 +58,14 @@
   background: #fff;
   position: fixed;
   bottom: 0%;
-  z-index: 9999;
-
+  z-index: 2400;
 }
 .react-music-player-wrapper{
   width: 100%;
   height: 70px;
   background: #fff;
   position: relative;
-  z-index: 9997;
+  z-index: 2400;
   box-shadow: 0 0px 5px #ccc;
 }
 .react-music-player-inner{
@@ -74,7 +73,7 @@
   margin:0 auto;
   height: 70px;
   position: relative;
-  z-index: 9999;
+  z-index: 2400;
   background: #fff;
 
 }
@@ -100,6 +99,7 @@
 .music-box .picture {
   width: 65px;
   height: 65px;
+  display: block;
   border-radius: 50%;
   background: #ccc;
   border:3px solid #ebebeb;
@@ -138,7 +138,7 @@
   -webkit-user-select: none;
   user-select:none;
 }
-.music-box .music-info .progress{
+.progress{
   width: 100%;
   background: #eaeaea;
   height: 2px;
@@ -148,24 +148,24 @@
 
 }
 /*缓冲进度条*/
-.music-box .music-info .progress .progress-buffered{
+.progress .progress-buffered{
 
   position: absolute;
   top:0;
   left:0;
   height: 2px;
   background: #c7c7c7;
-  z-index: 9998;
+  z-index: 2300;
   border-radius: 5px;
 }
 /*播放进度条*/
-.music-box .music-info .progress .progress-played{
+.progress .progress-played{
   position: absolute;
   top:0;
   left:0;
   height: 2px;
   background: linear-gradient(90deg,#ffbf37,#f68b0e);
-  z-index: 9999;
+  z-index: 2300;
   border-radius: 5px;
 }
 .music-box .music-info .music-name{
@@ -219,14 +219,14 @@
   background:  linear-gradient(90deg,#01e4ff,#017fff);
   height: 4px;
   border-radius: 5px;
-  z-index: 9999;
+  z-index: 3100;
 }
 /*播放列表*/
 .music-list{
   position: absolute;
   left:50%;
   top:-320px;
-  z-index:9990;
+  z-index:2300;
   margin-left: -12.5%;
   width: 25%;
   height: 320px;
@@ -317,10 +317,8 @@
   background: #000;
   opacity: 0.3;
   position: fixed;
-  z-index: 9000;
+  z-index: 2200;
   top:0;
-
-
 }
 .music-list-model-enter {
   opacity: 0;
@@ -337,53 +335,12 @@
   transition: all 300ms ease-in;
 }
 
-@media screen and (max-width: 1340px){
-  .music-list{
-    width: 35%;
-    margin-left: -17.5%;
-  }
-
-}
-@media screen and (min-width: 1024px){
-  .music-box .picture{
-    margin-left: 0;
-  }
-}
-@media screen and (max-width: 1024px) {
-  .left-control .icon-play,.left-control .icon-pause{
-    margin:0 10px
-  }
-  .music-box .picture{
-    margin-left: 0;
-  }
-  .music-box .music-info{
-    width: 80%;
-    margin-left: 20px;
-  }
-}
-
-@media screen and (max-width: 980px){
-  .music-list{
-    width: 50%;
-    margin-left: -25%;
-  }
-}
-@media screen and (max-width: 780px){
-  .right-control{
-    display: none;
-  }
-
-}
 @media screen and (max-width: 715px) {
-
   .music-box .picture{
     position: absolute;
     top: -10px;
     left:0px
   }
-/*  .left-control{
-    width: 20%;
-  }*/
   .modal{
     display: block;
   }
@@ -393,7 +350,7 @@
     right:00px;
     color: #868686;
     text-align: right;
-    z-index: 9999;
+    z-index: 2100;
   }
   .left-control span{
     float: left;
@@ -433,11 +390,6 @@
 
 @media screen and (max-width: 530px) {
 
-
-
-
-
-
   .music-list{
     width: 100%;
     margin-left: -50%;
@@ -448,3 +400,110 @@
   }
 
 }
+.wing-blank{
+  width:92%;
+  margin:0 auto;
+}
+.play-detail{
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  z-index: 3000;
+  background: rgba(0,0,0,0.8);
+  .play-detail-wrapper{
+    position: relative;
+    z-index: 3100;
+    .wing-blank;
+    .play-detail-img{
+      width: 250px;
+      height: 250px;
+      margin:40px auto 0 auto;
+      overflow: hidden;
+      border-radius: 50%;
+      img{
+        width: 100%;
+      }
+    }
+    .music-info{
+      margin-top: 30px;
+      text-align: center;
+      .title{
+        font-size: 22px;
+        color:#fff
+      }
+      .artist{
+        margin-top: 10px;
+        font-size: 12px;
+        color: #dfdfdf;
+      }
+    }
+    .operate{
+      margin-top: 90px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      .close-detail{
+        width: 30px;
+        font-size: 0;
+        img{
+          width: 30px;
+        }
+      }
+      .operation{
+        font-size: 30px;
+        span{
+          margin:0 20px;
+        }
+      }
+      .mode{
+        width: 40px;
+      }
+    }
+    .detail-progress{
+      width: 100%;
+      height: 4px;
+      padding: 3px 0;
+      margin-top:30px;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select:none;
+      .progress{
+        height: 4px;
+        .progress-buffered{
+          height: 4px;
+        }
+        .progress-played{
+          height: 4px;
+        }
+      }
+    }
+    .detail-time{
+      display: flex;
+      margin-top: 10px;
+      justify-content: space-between;
+      color: #dedede;
+      font-size: 14px;
+      font-weight: 100;
+    }
+  }
+
+}
+.play-detail-show-enter {
+  top: 100%;
+}
+.play-detail-show-enter.play-detail-show-enter-active {
+  top: 0;
+  transition: all 300ms ease-in;
+}
+.play-detail-show-leave {
+  top: 0;
+}
+.play-detail-show-leave.play-detail-show-leave-active {
+  top: 100%;
+  transition: all 300ms ease-in;
+}
+

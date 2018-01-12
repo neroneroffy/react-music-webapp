@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Container from './containers/container/container';
 import MusicPlayer from './components/music-plpayer/music-player'
-import Tabbar from './components/top-tabbar/top-tabbar'
+import Tabbar from './components/top-tabbar/top-tabbar';
+
 class Router extends Component {
     constructor(props) {
         super(props);
@@ -37,6 +38,8 @@ class Router extends Component {
                     return <MusicPlayer></MusicPlayer>
                 case `/discover`:
                     return <MusicPlayer></MusicPlayer>
+                case `/playdetail`:
+                    return <MusicPlayer></MusicPlayer>
             }
             return null
         };
@@ -45,9 +48,10 @@ class Router extends Component {
                 <BrowserRouter>
                     <div>
                         <TabbarRender></TabbarRender>
-                        <Switch>
+
                             <Route path="/" component={Container}></Route>
-                        </Switch>
+                            {/*<Route path="/playdetail" component={PlayDetail}></Route>*/}
+
                         <MusicPlayerRender></MusicPlayerRender>
                     </div>
                 </BrowserRouter>
