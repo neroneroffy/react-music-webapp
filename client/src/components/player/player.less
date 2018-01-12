@@ -101,21 +101,19 @@
   height: 65px;
   display: block;
   border-radius: 50%;
-  background: #ccc;
-  border:3px solid #ebebeb;
+  background: #e8e8e8;
+  border:2px solid #ccc;
   overflow: hidden;
   position: relative;
   font-size: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .music-box .picture img{
   width: 70px;
   height: 70px;
-  position: absolute;
-  top:0;
-  right:0;
-  bottom:0;
-  left:0;
-  margin:auto
+
 }
 .music-box .music-info{
   width: 80%;
@@ -404,6 +402,15 @@
   width:92%;
   margin:0 auto;
 }
+.absolute-center{
+  position: absolute;
+  top:0;
+  left:0;
+  bottom: 0;
+  right:0;
+  margin:auto;
+
+}
 .play-detail{
   position: fixed;
   top:0;
@@ -422,8 +429,31 @@
       margin:40px auto 0 auto;
       overflow: hidden;
       border-radius: 50%;
-      img{
-        width: 100%;
+      position: relative;
+      font-size: 0;
+      .album-bg{
+        .absolute-center;
+        width: 250px;
+        height: 250px;
+        z-index: 3100;
+      }
+      .album-border{
+        .absolute-center;
+        width: 174px;
+        height: 174px;
+        z-index: 3200;
+      }
+
+      .detailPic-wrapper{
+        .absolute-center;
+        z-index: 3300;
+        width: 170px;
+        height: 170px;
+        border-radius: 50%;
+        overflow: hidden;
+        img{
+          width: 100%;
+        }
       }
     }
     .music-info{
@@ -440,7 +470,7 @@
       }
     }
     .operate{
-      margin-top: 90px;
+      margin-top: 50px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -485,9 +515,9 @@
       display: flex;
       margin-top: 10px;
       justify-content: space-between;
-      color: #dedede;
+      color: #a3a3a3;
       font-size: 14px;
-      font-weight: 100;
+
     }
   }
 

@@ -423,7 +423,7 @@ class Player extends Component {
                                     this.state.currentMusic.src?
                                         <img src={this.state.currentMusic.img} ref="musicAvatar" alt="图片丢失了"/>
                                         :
-                                        null
+                                        <img className="album-bg" src={require('./little.png')} alt=""/>
                                 }
 
                             </div>
@@ -490,7 +490,7 @@ class Player extends Component {
                                         this.props.info.map((v,i)=>{
                                             return (
                                                 <div className="single-music" style={
-                                                    this.state.currentMusic.src === v .src && this.state.isPlayed?{background: "#33beff",color:"#fff"}:null} key={v.src}>
+                                                    this.state.currentMusic.src === v.src && this.state.isPlayed?{background: "#fec501",color:"#fff"}:null} key={v.src}>
                                                     <div className="single-music-play">
                                                         <span className={this.state.currentMusic.src === v .src && this.state.isPlayed?"icon-playing":"icon-play"} onClick={this.playThis.bind(this,i)}></span>
                                                     </div>
@@ -534,7 +534,13 @@ class Player extends Component {
                                 <div className="play-detail-wrapper">
 
                                     <div className="play-detail-img">
-                                        <img ref="detailMusicImg" src={this.state.currentMusic.img} alt=""/>
+                                        <img className="album-bg" src={require('./album.png')} alt=""/>
+                                        <img className="album-border" src={require('./album-border.png')} alt=""/>
+                                        <div className="detailPic-wrapper">
+                                            <img className="detailPic" ref="detailMusicImg" src={this.state.currentMusic.img} alt=""/>
+                                        </div>
+
+
                                     </div>
                                     <div className="music-info">
                                         <div className="title">{this.state.currentMusic.name}</div>
