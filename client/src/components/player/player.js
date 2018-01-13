@@ -159,7 +159,8 @@ class Player extends Component {
     }
     play(){
         clearInterval(rotateTimer)
-
+        this.refs.played.style.width = 0;
+        this.refs.buffered.style.width = 0;
         let audio = this.refs.audio;
         if(audio.paused && this.state.currentMusic.src){
             console.log(333)
