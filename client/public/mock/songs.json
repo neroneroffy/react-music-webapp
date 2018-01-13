@@ -1,46 +1,52 @@
 {
   "data":[
     {
-      "name":"Pacific Rim",
-      "artist":"《环太平洋》配乐",
-      "src":"http://m10.music.126.net/20180112204325/ed3703c79c6657ee41f45e89f8e6b967/ymusic/3376/2c2d/d23f/62fce93bc1c9b4bbbea11d2839f1a250.mp3",
-      "img":"http://p1.music.126.net/uL7LPVH-esufKi2FB0BKhw==/4449723557623509.jpg?param=130y130",
-      "id":"886542"
+      "name":"等不到你",
+      "artist":"夏天Alex",
+      "src":"http://wma.5282.cc/2008-11//20160707/6.mp3",
+      "img":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515858245249&di=6a9bb9ec7223c83aa50a7ca23b732027&imgtype=0&src=http%3A%2F%2Fwww.hxw163.com%2Fuploadfile%2F2016%2F0806%2F20160806100520905.jpg",
+      "id":"886545",
+      "isCollected":false
     },
     {
-      "name":"我的未来不是梦",
-      "artist":"张雨生",
-      "src":"http://fs.w.kugou.com/201801112048/d20fd64ac7cc085c00c7c32fd58f07f8/G002/M00/1E/07/ooYBAFT6qqOAMxlQAEwN0Iy_POk107.mp3",
-      "img":"http://www.nvsay.com/uploads/allimg/160901/34-160Z11GP60-L.jpg",
-      "id":"223542"
+      "name":"煎熬",
+      "artist":"李佳薇",
+      "src":"http://wma.5282.cc/2008-11//20150306/5.mp3",
+      "img":"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=626117404,1177682723&fm=27&gp=0.jpg",
+      "id":"886542",
+      "isCollected":false
     },
     {
-      "name":"坏天使2.1",
-      "artist":"江映蓉",
-      "src":"http://fs.w.kugou.com/201801112047/fde52be91705767d699ae6ff44d30248/G056/M03/1D/18/eA0DAFa4AISAGf4cACE5FAgJb2I509.mp3",
-      "img":"http://img.5nd.com/250/Photo/singer/2/20498.jpg",
-      "id":"22132"
+      "name":"成都",
+      "artist":"赵雷",
+      "src":"http://wma.5282.cc/2008-11//20170626/4.mp3",
+      "img":"http://p1.music.126.net/34YW1QtKxJ_3YnX9ZzKhzw==/2946691234868155.jpg?param=130y130",
+      "id":"223542",
+      "isCollected":false
     },
     {
-      "name":"Persona",
-      "artist":"安七炫",
-      "src":"http://fs.w.kugou.com/201801112050/e6e80e757e05af7f893059f9608e47b9/G045/M00/0E/13/bQ0DAFYfGuGARlYXADhVira3iJI730.mp33",
-      "img":"http://imge.kugou.com/stdmusic/20120813/20120813154924814546.jpg",
-      "id":"45465"
+      "name":"一笑倾城",
+      "artist":"汪苏泷",
+      "src":"http://wma.5282.cc/2008-11//20160822/8.mp3",
+      "img":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515858100418&di=41b1e981d5276a566b5dea7175854049&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2F5fdf8db1cb13495436a384515e4e9258d1094a41.jpg",
+      "id":"22132",
+      "isCollected":false
     },
     {
-      "name":"画心",
+      "name":"突然想爱你",
+      "artist":"容祖儿",
+      "src":"http://wma.5282.cc/2008-11//20160320/4.mp3",
+      "img":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515858512649&di=caddb8cdeef1b56d8d4e7696173c0447&imgtype=0&src=http%3A%2F%2Fwww.people.com.cn%2Fmediafile%2Fpic%2F20150616%2F57%2F15751470060407988909.jpg",
+      "id":"45465",
+      "isCollected":false
+    },
+    {
+      "name":"终于等到你",
       "artist":"张靓颖",
-      "src":"http://fs.w.kugou.com/201801112018/0e94506b765c2f7cf26d6d8c7f621bd1/G004/M05/00/01/RA0DAFS26_yAc1HWAGmOCUSAHKE870.mp3",
-      "img":"http://imge.kugou.com/stdmusic/20160908/20160908040959642999.jpg",
-      "id":"465465"
-    },
-    {
-      "name":"心战",
-      "artist":"阿兰",
-      "src":"http://fs.w.kugou.com/201801112052/7d605d1e95fe9f162e4d368e336d58ff/G006/M01/09/0B/Rg0DAFT7I76AGai8AFdaGMz00v0552.mp3",
-      "img":"http://imge.kugou.com/stdmusic/20150717/20150717125201543154.jpg",
-      "id":"789897"
+      "src":"http://wma.5282.cc/2008-11//20131015/3.mp3",
+      "img":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515858394272&di=68587147d3103d8ec1ab9f22f27784bb&imgtype=0&src=http%3A%2F%2Fimg.361t.net%2F20100811%2F20100811103031-1622322026.jpg",
+      "id":"465475",
+      "isCollected":false
     }
   ],
   "result":true

@@ -3,6 +3,7 @@ import { Route,withRouter } from 'react-router-dom';
 import Repertoire from '../repertoire/repertoire';
 import Me from '../me/me';
 import Discover from '../discover/discover';
+import SongListDetail from '../song-list-detail/song-list-detail';
 @withRouter
 class Container extends Component {
     constructor(props) {
@@ -21,6 +22,7 @@ class Container extends Component {
                 <Route path={`/repertoire`} component={Repertoire}></Route>
                 <Route path={`/me`} component={Me}></Route>
                 <Route path={`/discover`} component={Discover}></Route>
+                <Route path={`/songlistdetail/:id`} component={SongListDetail}></Route>
             </div>
         )
     }

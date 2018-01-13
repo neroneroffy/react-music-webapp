@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { fixedBody,looseBody } from '../../util/preventBackgroundScroll'
 import './player.less'
 let rotateTimer = 0;
-let timer = 0;
 class Player extends Component {
     constructor(props) {
         super(props);
@@ -80,6 +80,7 @@ class Player extends Component {
         }
 
     }
+
     playMode(){
         switch (this.state.mode){
             case "order":
@@ -293,8 +294,11 @@ class Player extends Component {
         let targetPoint = e.touches[0].pageX-this.state.playedLeft
         if(flag){
             targetPoint = e.touches[0].pageX- this.state.detailPlayedLeft
+            var newWidth = targetPoint/this.refs.detailProgress.offsetWidth;
+        }else{
+            var newWidth = targetPoint/this.refs.progress.offsetWidth;
         }
-        let newWidth = targetPoint/this.refs.progress.offsetWidth;
+
         this.refs.played.style.width = newWidth*100 + "%";
         audio.currentTime = newWidth*audio.duration
     }
@@ -332,6 +336,13 @@ class Player extends Component {
     showMusicList(){
         this.setState({
             musicListShow:!this.state.musicListShow
+        },()=>{
+            if(this.state.musicListShow){
+                fixedBody();//阻止滚动穿透
+            }else {
+                looseBody();//释放滚动穿透
+            }
+
         })
     }
     playThis(i){
@@ -395,6 +406,7 @@ class Player extends Component {
         this.setState({
             playDetail:true,
         },()=>{
+            fixedBody();//阻止滚动穿透
             this.setState({
                 detailPlayedLeft:this.refs.detailPlayed.getBoundingClientRect().left
             })
@@ -403,6 +415,8 @@ class Player extends Component {
     hidePlayDetail(){
         this.setState({
             playDetail:false
+        },()=>{
+            looseBody();//释放滚动穿透
         })
     }
     render() {
@@ -559,7 +573,7 @@ class Player extends Component {
                                             <img src={require('../../icons/close.png')} alt=""/>
                                         </div>
                                     </div>
-                                    <div className="detail-progress" ref="progress"
+                                    <div className="detail-progress" ref="detailProgress"
                                          onTouchMove={(e)=>{this.moveProgress(e,"detail")}}
                                          onTouchStart={(e)=>{this.startChangeTime(e,"detail")}}
                                          onClick={(e)=>{this.clickChangeTime(e,"detail")}}

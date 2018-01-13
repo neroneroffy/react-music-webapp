@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Container from './containers/container/container';
 import MusicPlayer from './components/music-plpayer/music-player'
 import Tabbar from './components/top-tabbar/top-tabbar';
@@ -50,9 +50,8 @@ class Router extends Component {
                         <TabbarRender></TabbarRender>
 
                             <Route path="/" component={Container}></Route>
-                            {/*<Route path="/playdetail" component={PlayDetail}></Route>*/}
 
-                        <MusicPlayerRender></MusicPlayerRender>
+                        <MusicPlayer></MusicPlayer>
                     </div>
                 </BrowserRouter>
         )

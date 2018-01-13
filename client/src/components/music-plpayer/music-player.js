@@ -42,7 +42,7 @@ class MusicPlayer extends Component {
                 {
                     this.props.music.shouldRender?
                         <Player
-                            info={this.state.music.songs}
+                            info={this.props.music.songs}
                             onDel = {this.delSong}
                             currentSong = {this.props.music.currentSong}
                         >

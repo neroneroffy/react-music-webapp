@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import { Carousel } from 'antd-mobile';
-import WhiteSpace from '../../components/whiteSpace'
+import WhiteSpace from '../../components/whiteSpace';
 import Title from '../../components/title';
-import SongsList from '../../components/songs-list/songs-list'
+import SongsList from '../../components/songs-list/songs-list';
 import {fetchBanner,fetchRecommend,fetchReSongsData} from '../../redux/repertoire.redux';
 import { connect } from 'react-redux';
 import './repertoire.less';
@@ -13,9 +14,7 @@ import './repertoire.less';
 class Repertoire extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            data:this.props.bannerData
-        };
+        this.state = {};
     }
     componentDidMount(){
         this.props.fetchBanner();
@@ -60,12 +59,12 @@ class Repertoire extends Component {
                     <div className="recommend-wrapper">
                         {
                             this.props.recommendData.map(v=>(
-                                <div key={v.src} className="recommend-item">
+                                <Link to={`/songlistdetail/${v.id}`} key={v.src} className="recommend-item">
                                     <div>
                                         <img src={v.src} alt=""/>
                                     </div>
                                     <div className="item-name">{v.name}</div>
-                                </div>
+                                </Link>
                             ))
                         }
                     </div>

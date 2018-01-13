@@ -1,0 +1,119 @@
+.wing-blank{
+  width:95%;
+  margin:0 auto;
+}
+#songs-list-detail{
+  .songs-list-detail-wrapper{
+    .header{
+      width: 100%;
+      height: 130px;
+      //background:linear-gradient( 22deg, rgb(246,139,14) 0%, rgb(244, 177, 10) 80%);
+      color: #fff;
+      position: relative;
+      .blur-bg-wrapper{
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,1);
+        overflow: hidden;
+        position: absolute;
+        top:0;
+        left:0;
+        z-index: 900;
+        .blur-bg{
+          width: 130%;
+          height: 130%;
+          margin-top: -20px;
+          margin-left: -20px;
+          filter:blur(15px);
+          opacity: 0.8;
+        }
+      }
+      .center{
+        .wing-blank;
+        .top{
+          height: 50px;
+          line-height: 50px;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          position: relative;
+          z-index: 1000;
+        }
+        .pic{
+          width: 100px;
+          height: 100px;
+          border:2px solid #e9e9e9;
+          position: absolute;
+          top: 55px;
+          left:4%;
+          z-index: 1000;
+          img{
+            width: 100px;
+            height: 100px;
+          }
+        }
+        .info{
+          position: relative;
+          margin-left: 120px;
+          margin-top: 5px;
+          z-index: 1000;
+          .info-top{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            .name{
+              font-size: 18px;
+            }
+            .collect{
+              height: 25px;
+              line-height: 27px;
+              font-size: 14px;
+              border: 1px solid #fff;
+              border-radius: 30px;
+
+              color:#fff;
+              padding:0 5px;
+            }
+          }
+          .tags{
+            span{
+              display: inline-block;
+              font-size: 11px;
+              height: 16px;
+              line-height: 18px;
+              border: 1px solid #d6d6d6;
+              padding: 0 5px;
+              border-radius: 30px;
+              margin-right: 5px;
+
+            }
+          }
+
+        }
+
+      }
+      .data{
+        color: #666;
+        position: absolute;
+        bottom: -25px;
+        left:130px;
+        font-size: 13px;
+        span{
+          margin-right: 20px;
+        }
+      }
+    }
+    .introduction{
+      .wing-blank;
+      margin-top: 45px;
+      color: #666;
+      font-size: 14px;
+      line-height: 16px;
+      transition:all .3s ease-in;
+    }
+    .all{
+      .wing-blank;
+      text-align: right;
+    }
+  }
+}

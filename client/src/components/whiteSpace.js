@@ -12,7 +12,9 @@ class WhiteSpace extends Component {
             }
         }
     }
-
+    shouldComponentUpdate(){
+        return false
+    }
     render() {
         return (
             <div style={this.state.style}></div>

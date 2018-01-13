@@ -18,6 +18,13 @@ class SongsList extends Component {
     playThis(data){
         this.props.playThis(data)
     }
+    shouldComponentUpdate(nextProps){
+
+        if (nextProps === this.props){
+            return false
+        }
+        return true
+    }
     render() {
         return (
             <div id="songs-list">

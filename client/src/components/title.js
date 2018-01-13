@@ -7,6 +7,12 @@ class Title extends Component {
             color:"#646464",
             marginBottom:"8px"
         }
+    };
+    shouldComponentUpdate(nextProps){
+        if (nextProps.title === this.props.title){
+            return false
+        }
+        return true
     }
     render() {
         return (
