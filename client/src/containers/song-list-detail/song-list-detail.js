@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import { Icon } from 'antd-mobile';
+
 import './song-list-detail.less';
 import { withRouter } from 'react-router-dom';
+import Title from '../../components/title';
+import Header from '../../components/header/header'
 import WhiteSpace from '../../components/whiteSpace';
 import SongsList from '../../components/songs-list/songs-list';
 import {getSongsListDetail} from '../../redux/song-list-detail.redux';
@@ -17,8 +19,6 @@ class SongListDetail extends Component {
         this.state = {
         };
         this.goBack = this.goBack.bind(this)
-
-
     }
     componentDidMount(){
         this.props.getSongsListDetail(this.props.match.params.id)
@@ -29,7 +29,7 @@ class SongListDetail extends Component {
 
 
     render() {
-        console.log(this.state.all)
+
         const blur=this.props.data?{
                 background:`url(${this.props.data.img})`,
                 backgroundRepeat: 'no-repeat',
@@ -40,7 +40,6 @@ class SongListDetail extends Component {
             <div id="songs-list-detail">
 
                 {
-
                     this.props.data?
                         <div className="songs-list-detail-wrapper">
                             <div className="header" >
@@ -49,10 +48,12 @@ class SongListDetail extends Component {
                                     </div>
                                 </div>
                                 <div className="center">
-                                    <div className="top" onClick={this.goBack}>
+
+                                    <Header text="歌单详情"></Header>
+{/*                                    <div className="top" onClick={this.goBack}>
                                         <Icon type="left"></Icon>
                                         <span>歌单详情</span>
-                                    </div>
+                                    </div>*/}
                                     <div className="pic">
                                         <img src={this.props.data.img} alt=""/>
                                     </div>
@@ -80,9 +81,10 @@ class SongListDetail extends Component {
                                 简介：{this.props.data.introduction}
                             </div>
                             <WhiteSpace></WhiteSpace>
-                            <div className="songs">
-                                <SongsList songs={this.props.data.list}></SongsList>
-                            </div>
+
+                            <Title title="歌曲列表"></Title>
+                            <SongsList songs={this.props.data.list}></SongsList>
+
 
                         </div>
                         :

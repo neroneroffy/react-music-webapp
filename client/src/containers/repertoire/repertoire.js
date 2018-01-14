@@ -34,9 +34,9 @@ class Repertoire extends Component {
                         afterChange={index => console.log('slide to', index)}
                     >
                         {this.props.bannerData.map(val => (
-                            <a
+                            <Link
                                 key={val}
-                                href="##"
+                                to="/albumdetail/3"
                                 style={{ display: 'inline-block', width: '100%'}}
                             >
                                 <img
@@ -49,13 +49,14 @@ class Repertoire extends Component {
                                         this.setState({ imgHeight: 'auto' });
                                     }}
                                 />
-                            </a>
+                            </Link>
                         ))}
                     </Carousel>
                 </div>
                 <WhiteSpace></WhiteSpace>
+
+                <Title title="每日推荐"></Title>
                 <div className="recommend">
-                    <Title title="每日推荐"></Title>
                     <div className="recommend-wrapper">
                         {
                             this.props.recommendData.map(v=>(
@@ -70,10 +71,10 @@ class Repertoire extends Component {
                     </div>
                 </div>
                 <WhiteSpace></WhiteSpace>
-                <div className="songs">
-                    <Title title="曲库好歌"></Title>
-                    <SongsList songs={this.props.reSongsData}></SongsList>
-                </div>
+
+                <Title title="曲库好歌"></Title>
+                <SongsList songs={this.props.reSongsData}></SongsList>
+
             </div>
         )
     }

@@ -1,8 +1,15 @@
 import React, {Component} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { fixedBody,looseBody } from '../../util/preventBackgroundScroll'
-import './player.less'
+import './player.less';
+import { playThis } from '../../redux/player.redux';
+import { connect } from 'react-redux';
 let rotateTimer = 0;
+@connect(
+    null,
+    { playThis }
+)
+
 class Player extends Component {
     constructor(props) {
         super(props);
@@ -102,7 +109,8 @@ class Player extends Component {
 
     }
     random(){
-
+        this.refs.played.style.width = 0;
+        this.refs.buffered.style.width = 0;
         if(this.props.info.length !== 0){
             let randomIndex = Math.ceil(Math.random()*this.props.info.length-1);
             this.setState({
@@ -115,6 +123,8 @@ class Player extends Component {
 
     }
     last(){
+        this.refs.played.style.width = 0;
+        this.refs.buffered.style.width = 0;
         this.setState({
             angle:0
         });
@@ -155,16 +165,14 @@ class Player extends Component {
                     this.refs.detailMusicImg.style.transform = `rotate(${this.state.angle}deg)`;
                 }
             })
-        },33)
+        },30)
     }
     play(){
-        clearInterval(rotateTimer)
-        this.refs.played.style.width = 0;
-        this.refs.buffered.style.width = 0;
+        clearInterval(rotateTimer);
         let audio = this.refs.audio;
         if(audio.paused && this.state.currentMusic.src){
-            console.log(333)
-            audio.play()
+            this.props.playThis(this.state.currentMusic);
+            audio.play();
             this.setState({
                 isPaused:true,
                 isPlayed:true
@@ -218,6 +226,8 @@ class Player extends Component {
 
     }
     next(){
+        this.refs.played.style.width = 0;
+        this.refs.buffered.style.width = 0;
         if(!this.state.currentMusic.src){
             return
         }
@@ -421,7 +431,6 @@ class Player extends Component {
         })
     }
     render() {
-
         return (
             <div id="react-music-player">
                 <div className="react-music-player-wrapper">
@@ -561,19 +570,6 @@ class Player extends Component {
                                         <div className="title">{this.state.currentMusic.name}</div>
                                         <div className="artist">{this.state.currentMusic.artist}</div>
                                     </div>
-                                    <div className="operate">
-                                        <div className="mode" onClick={this.playMode}>
-                                            {this.state.mode}
-                                        </div>
-                                        <div className="operation">
-                                            <span className="icon-last" onClick={this.last}></span>
-                                            <span className={this.state.isPaused && this.state.currentMusic.src?"icon-pause":"icon-play"} onClick={this.play}></span>
-                                            <span className="icon-next" onClick={this.next}></span>
-                                        </div>
-                                        <div className="close-detail" onClick={this.hidePlayDetail}>
-                                            <img src={require('../../icons/close.png')} alt=""/>
-                                        </div>
-                                    </div>
                                     <div className="detail-progress" ref="detailProgress"
                                          onTouchMove={(e)=>{this.moveProgress(e,"detail")}}
                                          onTouchStart={(e)=>{this.startChangeTime(e,"detail")}}
@@ -589,6 +585,20 @@ class Player extends Component {
                                         <div>{this.state.playedTime}</div>
                                         <div>{this.state.totalTime}</div>
                                     </div>
+                                    <div className="operate">
+                                        <div className="mode" onClick={this.playMode}>
+                                            {this.state.mode}
+                                        </div>
+                                        <div className="operation">
+                                            <span className="icon-last" onClick={this.last}></span>
+                                            <span className={this.state.isPaused && this.state.currentMusic.src?"icon-pause":"icon-play"} onClick={this.play}></span>
+                                            <span className="icon-next" onClick={this.next}></span>
+                                        </div>
+                                        <div className="close-detail" onClick={this.hidePlayDetail}>
+                                            <img src={require('../../icons/close.png')} alt=""/>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                             :

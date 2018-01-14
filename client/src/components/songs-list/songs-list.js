@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import './songs-list.less';
+import QueueAnim from 'rc-queue-anim';
 import { connect } from 'react-redux';
-import { addMusic,playThis } from '../../redux/player.redux'
+import { addMusic,playThis } from '../../redux/player.redux';
 @connect(
-    null,
+    state=>state,
     { addMusic,playThis }
 )
 class SongsList extends Component {
@@ -13,6 +14,11 @@ class SongsList extends Component {
         this.addToList = this.addToList.bind(this)
     }
     addToList(data){
+        this.props.music.songs.map(v=>{
+            if(data.src === v.src){
+                return
+            }
+        })
         this.props.addMusic(data)
     }
     playThis(data){
@@ -28,22 +34,25 @@ class SongsList extends Component {
     render() {
         return (
             <div id="songs-list">
-                {
-                    this.props.songs.map(v=>(
-                        <div className="songs-item" key={v.id}>
-                            <div className="item-left" onClick={()=>{this.playThis(v)}}>
-                                <div className="item-title">{v.name}</div>
-                                <div className="item-artist">{v.artist}</div>
-                            </div>
-                            <div className="item-right">
-                                <div className="item-add" onClick={()=>{this.addToList(v)}}>
-                                    <img src={require('../../icons/add.png')} alt=""/>
+                <QueueAnim delay={300} type="top">
+                    {
+                        this.props.songs.map(v=>(
+                            <div className={ v.src === this.props.music.currentSong.src? "songs-item current-played":"songs-item"} key={v.id} >
+                                <div className="item-left" onClick={()=>{this.playThis(v)}}>
+                                    <div className="item-title">{v.name}</div>
+                                    <div className="item-artist">{v.artist}</div>
+                                </div>
+                                <div className="item-right">
+                                    <div className="item-add" onClick={()=>{this.addToList(v)}}>
+                                        <img src={require('../../icons/add.png')} alt=""/>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                    ))
-                }
+                        ))
+                    }
+
+                </QueueAnim>
             </div>
         )
     }

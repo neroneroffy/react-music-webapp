@@ -1,10 +1,12 @@
 #songs-list{
   margin-top: 20px;
+  margin-bottom: 75px;
   .songs-item{
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
+    padding:5px 2.5% 2px 2.5%;
     //border-bottom: 1px solid #f9f9f9;
     .item-left{
       width: 80%;
@@ -26,6 +28,17 @@
       text-align: right;
       img{
         width: 15px;
+      }
+    }
+  }
+  .current-played{
+    background: linear-gradient(90deg,#ffbf37,#f68b0e);
+    .item-left{
+      .item-title{
+        color: #fff;
+      }
+      .item-artist{
+        color: #fff;
       }
     }
   }

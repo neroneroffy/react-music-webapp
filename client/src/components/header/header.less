@@ -1,22 +1,29 @@
 #header{
   height: 40px;
   width: 95%;
-  background:linear-gradient( 22deg, rgb(246,139,14) 0%, rgb(244, 177, 10) 80%);
+  line-height: 40px;
   font-size: 14px;
   color: #fff;
-  display: flex;
-  justify-content: space-between;
   padding: 0 2.5%;
   position: fixed;
   top:0;
-  div{
+  left:0;
+  z-index: 1900;
+  background: rgba(0,0,0,0);
+  transition: all .3s ease-in;
+  text-align: center;
+
+  .h-back{
     height: 40px;
     line-height: 40px;
-    &:first-child{
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-    }
+    float: left;
+    display: flex;
+    align-items: center;
   }
+  .h-operate{
+      float: right;
+
+    }
+
 
 }

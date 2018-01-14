@@ -5,7 +5,8 @@ class Title extends Component {
         style:{
             fontSize:"18px",
             color:"#646464",
-            marginBottom:"8px"
+            marginBottom:"8px",
+            padding:"0 2.5%"
         }
     };
     shouldComponentUpdate(nextProps){

@@ -4,6 +4,7 @@ import Repertoire from '../repertoire/repertoire';
 import Me from '../me/me';
 import Discover from '../discover/discover';
 import SongListDetail from '../song-list-detail/song-list-detail';
+import AlbumDetail from '../album-detail/album-detail';
 @withRouter
 class Container extends Component {
     constructor(props) {
@@ -23,6 +24,7 @@ class Container extends Component {
                 <Route path={`/me`} component={Me}></Route>
                 <Route path={`/discover`} component={Discover}></Route>
                 <Route path={`/songlistdetail/:id`} component={SongListDetail}></Route>
+                <Route path={`/albumdetail/:id`} component={AlbumDetail}></Route>
             </div>
         )
     }

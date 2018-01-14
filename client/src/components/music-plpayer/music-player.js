@@ -29,8 +29,7 @@ class MusicPlayer extends Component {
 
     }
     delSong(id){
-        console.log(id)
-        console.log(this.props)
+
         this.props.delMusic(id)
         //this.state.songInfo.splice(i,1)
 
