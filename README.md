@@ -12,6 +12,6 @@
  * 当前播放歌曲高亮显示
  * redux存取数据
  * 返回按钮全部为路由返回。
-其余功能开发中... 
+ * 其余功能开发中...
 
 ![image](https://github.com/capslocktao/react-music-webapp/blob/master/show.gif)
