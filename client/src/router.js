@@ -9,10 +9,8 @@ class Router extends Component {
         super(props);
         this.state = {}
     }
-    componentDidMount(){
-        console.log(window.location.pathname)
 
-    }
+
     render() {
         const TabbarRender= ()=> {
             switch (window.location.pathname){

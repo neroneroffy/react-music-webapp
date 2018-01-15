@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Icon } from 'antd-mobile';
-import { withRouter } from 'react-router-dom';
+import { Link,withRouter } from 'react-router-dom';
+import { getRoute } from '../../util/backTo';
 import './header.less';
 @withRouter
 class Header extends Component {
@@ -21,10 +22,10 @@ class Header extends Component {
 
         }else{
             this.refs.header.style.background = "rgba(0,0,0,0)";
-
         }
     }
     goBack(){
+        console.log(getRoute());
         this.props.history.goBack()
     }
     componentWillUnmount(){
@@ -35,9 +36,9 @@ class Header extends Component {
 
             <div id="header" ref="header">
                 <span>{this.props.text}</span>
-                <div onClick={this.goBack} className="h-back">
+                <Link to={getRoute()} onClick={this.goBack} className="h-back">
                     <Icon type="left"></Icon>
-                </div>
+                </Link>
                 {
                     this.props.operate?
                         <div onClick={this.props.onClick} className="h-operate">{this.props.operate}</div>

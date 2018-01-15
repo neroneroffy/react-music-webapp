@@ -5,6 +5,7 @@ import Me from '../me/me';
 import Discover from '../discover/discover';
 import SongListDetail from '../song-list-detail/song-list-detail';
 import AlbumDetail from '../album-detail/album-detail';
+import { setRoute } from '../../util/backTo'
 @withRouter
 class Container extends Component {
     constructor(props) {
@@ -16,6 +17,10 @@ class Container extends Component {
         if(this.props.location.pathname === '/'){
             this.props.history.push('/repertoire')
         }
+    }
+    componentWillUpdate(){
+        console.log(this.props)
+        setRoute(this.props.location.pathname)
     }
     render() {
         return (
