@@ -31,7 +31,6 @@ class AlbumDetail extends Component {
     tabChange(tab,index){
         if(index === 2 && !this.props.comment.hasRequested){
             this.props.getComment(this.props.match.params.id,this.state.pageNum)
-            console.log('请求')
         }
     }
     componentWillUnmount(){
@@ -44,39 +43,44 @@ class AlbumDetail extends Component {
             backgroundSize: 'cover',
         };
         return (
+
             <div id="album-detail">
-                <div className="album-detail-header">
-                    <Header text="专辑"></Header>
-                    <div className="a-h-center">
-                        <div className="a-h-left">
-                            <img src={this.props.album.detail.img} alt=""/>
-                        </div>
-                        <div className="a-h-right">
-                            <div className="title">{this.props.album.detail.name}</div>
-                            <div className="artist">{this.props.album.detail.artist}</div>
-                            <div className="date">发行于：{this.props.album.detail.date}</div>
-                        </div>
-                    </div>
-                    <div className="album-detail-header-blur" style={blur}></div>
-                </div>
-                <div className="album-content">
-                    {
-                        this.props.album.detail?
-                            <Tabs tabs={this.state.tabs}
-                                  initialPage={0}
-                                  onChange={(tab,index) => { this.tabChange(tab,index); }}
-                                  tabBarUnderlineStyle={{width:"25%",marginLeft:'4%'}}
-                            >
-                                <SongsList songs={this.props.album.detail.songs}></SongsList>
-                                <div className="intro">
-                                    {this.props.album.detail.introduction}
+                {
+                    this.props.album.detail?
+                        <div>
+                            <div className="album-detail-header">
+                                <Header text="专辑"></Header>
+                                <div className="a-h-center">
+                                    <div className="a-h-left">
+                                        <img src={this.props.album.detail.img} alt=""/>
+                                    </div>
+                                    <div className="a-h-right">
+                                        <div className="title">{this.props.album.detail.name}</div>
+                                        <div className="artist">{this.props.album.detail.artist}</div>
+                                        <div className="date">发行于：{this.props.album.detail.date}</div>
+                                    </div>
                                 </div>
-                                <div className="comment-wrapper">
-                                    <CommentList data={this.props.comment.comment} />
-                                </div>
-                            </Tabs>:""
-                    }
-                </div>
+                                <div className="album-detail-header-blur" style={blur}></div>
+                            </div>
+                            <div className="album-content">
+                                <Tabs tabs={this.state.tabs}
+                                      initialPage={0}
+                                      onChange={(tab,index) => { this.tabChange(tab,index); }}
+                                      tabBarUnderlineStyle={{width:"25%",marginLeft:'4%'}}
+                                >
+                                    <SongsList songs={this.props.album.detail.songs}></SongsList>
+                                    <div className="intro">
+                                        {this.props.album.detail.introduction}
+                                    </div>
+                                    <div className="comment-wrapper">
+                                        <CommentList data={this.props.comment.comment} />
+                                    </div>
+                                </Tabs>
+                            </div>
+                        </div>
+                        :
+                        ""
+                }
             </div>
         )
     }

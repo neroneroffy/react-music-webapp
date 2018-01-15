@@ -26,54 +26,70 @@ class Repertoire extends Component {
         return (
             <div id="repertoire">
                 <div className="banner">
-                    <Carousel
-                        autoplay={true}
-                        infinite
-                        selectedIndex={1}
-                        beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-                        afterChange={index => console.log('slide to', index)}
-                    >
-                        {this.props.bannerData.map(val => (
-                            <Link
-                                key={val}
-                                to="/albumdetail/3"
-                                style={{ display: 'inline-block', width: '100%'}}
+                    {
+                        this.props.bannerData?
+                            <Carousel
+                                autoplay={true}
+                                infinite
+                                selectedIndex={1}
+                                beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
+                                afterChange={index => console.log('slide to', index)}
                             >
-                                <img
-                                    src={val}
-                                    alt=""
-                                    className="banner-img"
-                                    onLoad={() => {
-                                        // fire window resize event to change height
-                                        window.dispatchEvent(new Event('resize'));
-                                        this.setState({ imgHeight: 'auto' });
-                                    }}
-                                />
-                            </Link>
-                        ))}
-                    </Carousel>
+                                {this.props.bannerData.map(val => (
+                                    <Link
+                                        key={val}
+                                        to="/albumdetail/3"
+                                        style={{ display: 'inline-block', width: '100%'}}
+                                    >
+                                        <img
+                                            src={val}
+                                            alt=""
+                                            className="banner-img"
+                                            onLoad={() => {
+                                                // fire window resize event to change height
+                                                window.dispatchEvent(new Event('resize'));
+                                                this.setState({ imgHeight: 'auto' });
+                                            }}
+                                        />
+                                    </Link>
+                                ))}
+                            </Carousel>
+                            :
+                            ""
+                    }
+
                 </div>
                 <WhiteSpace></WhiteSpace>
-
                 <Title title="每日推荐"></Title>
                 <div className="recommend">
-                    <div className="recommend-wrapper">
-                        {
-                            this.props.recommendData.map(v=>(
-                                <Link to={`/songlistdetail/${v.id}`} key={v.src} className="recommend-item">
-                                    <div>
-                                        <img src={v.src} alt=""/>
-                                    </div>
-                                    <div className="item-name">{v.name}</div>
-                                </Link>
-                            ))
-                        }
-                    </div>
+                    {
+                        this.props.recommendData?
+                            <div className="recommend-wrapper">
+                                {
+                                    this.props.recommendData.map(v=>(
+                                        <Link to={`/songlistdetail/${v.id}`} key={v.src} className="recommend-item">
+                                            <div>
+                                                <img src={v.src} alt=""/>
+                                            </div>
+                                            <div className="item-name">{v.name}</div>
+                                        </Link>
+                                    ))
+                                }
+                            </div>
+                            :
+                            ""
+                    }
                 </div>
                 <WhiteSpace></WhiteSpace>
 
                 <Title title="曲库好歌"></Title>
-                <SongsList songs={this.props.reSongsData}></SongsList>
+                {
+                    this.props.reSongsData?
+                        <SongsList songs={this.props.reSongsData}></SongsList>
+                        :
+                        ""
+                }
+
 
             </div>
         )
