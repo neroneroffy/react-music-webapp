@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { getSummary } from '../../redux/personal.redux';
 import { Icon } from 'antd-mobile';
 import MySongList from '../../components/my-song-list/my-song-list';
-import WhiteSpace from '../../components/whiteSpace';
+import { Link } from 'react-router-dom';
 import './me.less'
 import { connect } from 'react-redux';
 @connect(
@@ -20,7 +20,6 @@ class Me extends Component {
         this.props.getSummary(this.state.userId)
     }
     render() {
-
         return (
             <div id="me">
                 {
@@ -37,18 +36,18 @@ class Me extends Component {
                                     <Icon type="right"></Icon>
                                 </div>
                             </div>
-                            <div className="personal-item">
+                            <Link to={`/collectsongs/${this.state.userId}`} className="personal-item">
                                 <div className="title">收藏的单曲</div>
                                 <div className="right">
                                     <Icon type="right"></Icon>
                                 </div>
-                            </div>
-                            <div className="personal-item">
+                            </Link>
+                            <Link to={`/collectsonglist/${this.state.userId}`} className="personal-item">
                                 <div className="title">收藏的歌单</div>
                                 <div className="right">
                                     <Icon type="right"></Icon>
                                 </div>
-                            </div>
+                            </Link>
                             <div className="white-space"></div>
                             <div className="my-song-list">
                                 <div className="top">

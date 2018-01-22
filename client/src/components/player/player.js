@@ -257,11 +257,18 @@ class Player extends Component {
         let audio = this.refs.audio;
         if(audio.currentTime !== 0) {
             let audio = this.refs.audio;
-            let targetPoint = e.pageX - this.state.playedLeft;
+            let targetPoint = 0;
+            let newWidth = 0;
             if(flag){
+
                 targetPoint = e.pageX - this.state.detailPlayedLeft
+                newWidth = targetPoint / this.refs.detailProgress.offsetWidth;
+
+            }else{
+                targetPoint = e.pageX - this.state.playedLeft;
+                newWidth = targetPoint / this.refs.progress.offsetWidth;
             }
-            let newWidth = targetPoint / this.refs.progress.offsetWidth;
+
             this.refs.played.style.width = newWidth * 100 + "%";
             audio.currentTime = newWidth * audio.duration;
         }
