@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Popover, Icon } from 'antd-mobile';
 import './my-song-list.less';
 import QueueAnim from 'rc-queue-anim';
 class MySongList extends Component {

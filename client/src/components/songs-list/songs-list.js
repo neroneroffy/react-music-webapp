@@ -13,14 +13,19 @@ class SongsList extends Component {
         this.state = {};
         this.addToList = this.addToList.bind(this)
     }
+    //添加进播放列表
     addToList(data){
+        let isExist = false
         this.props.music.songs.map(v=>{
             if(data.src === v.src){
-                return
+                isExist = true
             }
         })
-        this.props.addMusic(data)
+        if(!isExist){
+            this.props.addMusic(data)
+        }
     }
+
     playThis(data){
         this.props.playThis(data)
     }

@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import { Icon } from 'antd-mobile';
-import { Link,withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getRoute } from '../../util/backTo';
 import { connect } from 'react-redux';
 import { getSongs } from '../../redux/personal.redux';
+import SongEditList from '../../components/songs-edit-list/songs-edit-list'
 import './collect-songs.less'
 
 @connect(
@@ -13,12 +14,11 @@ import './collect-songs.less'
 class CollectSongs extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {};
     }
     componentDidMount(){
         this.props.getSongs(this.props.match.params.id)
     }
-
     render() {
         return (
             <div id="collect-songs">
@@ -31,22 +31,13 @@ class CollectSongs extends Component {
                     </Link>
                     <div className="title">收藏的单曲</div>
                     <div className="right">
-                        完成
+                        编辑
                     </div>
                 </div>
+
                 {
                     this.props.songList?
-                        <div className="collect-songd-wrapper">
-                            {
-                                this.props.songList.map(v=>(
-                                    <div className="single-song">
-                                        <div className="left">
-                                            <div className="name">{v.name}</div>
-                                        </div>
-                                    </div>
-                                ))
-                            }
-                        </div>
+                        <SongEditList data={this.props.songList}></SongEditList>
                         :
                         ""
                 }

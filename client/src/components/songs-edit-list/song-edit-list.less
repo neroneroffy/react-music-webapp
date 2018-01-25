@@ -1,0 +1,84 @@
+.option{
+  position: fixed;
+  top: 40px;
+  left:0;
+  width: 95%;
+  padding:0 2.5%;
+  height: 35px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color:#666666 ;
+  box-shadow: 0 0px 5px #e0e0e0;
+  .search{
+    height: 40px;
+    line-height: 40px;
+    padding-right: 10px;
+  }
+  .edit{
+    height: 40px;
+    line-height: 40px;
+    padding-left: 10px;
+
+  }
+  .operate{
+    display: flex;
+    justify-content: flex-end;
+    div{
+      padding-left: 8px;
+      margin-left: 5px;
+      height: 40px;
+      line-height: 40px;
+    }
+  }
+}
+.song-edit-list{
+  margin-top: 90px;
+  .single-song{
+    height: 50px;
+    padding:0 2.5%;
+    margin: 10px 0;
+    .left{
+      float: left;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      width: 85%;
+      .select{
+        div{
+          width: 10px;
+          height: 10px;
+          border:1px solid #e4e4e4;
+          border-radius: 3px;
+        }
+        padding-right: 10px;
+      }
+      .songs-info{
+        width: 100%;
+        .name{
+          font-size: 14px;
+          color: #666666;
+          margin-bottom: 10px;
+        }
+        .artist{
+          font-size: 12px;
+          margin-bottom: 5px;
+          color: #969696;
+        }
+      }
+    }
+    .right{
+      width: 10%;
+      text-align: right;
+      float:right;
+      padding-left:10px;
+      height: 50px;
+      line-height: 50px;
+      font-size: 28px;
+      color: #ccc;
+      font-weight:300;
+    }
+  }
+}

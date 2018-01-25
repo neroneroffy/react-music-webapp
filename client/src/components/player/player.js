@@ -372,8 +372,10 @@ class Player extends Component {
     }
     delMusic(i,id){
         let audio = this.refs.audio;
+        console.log(i)
         this.setState({})
         if(this.props.info[i].src === this.state.currentMusic.src){
+            console.log('删除的是播放的')
             if(i<=this.props.info.length-1 && this.props.info[i+1]){
                 this.setState({
                     currentMusic:this.props.info[i+1]
@@ -382,8 +384,7 @@ class Player extends Component {
                     this.props.onDel(i,id);
                 })
             }else if(!this.props.info[i+1] && this.props.info[i-1]){
-                //都删除完了
-                console.log(`山的是最后一条`)
+                console.log(`删的是最后一条`)
                 clearInterval(rotateTimer);
 
                 this.setState({
@@ -412,6 +413,7 @@ class Player extends Component {
             }
         }else{
             console.log(`删除的不是播放的`)
+            console.log(i)
             this.props.onDel(i,id);
 
         }
