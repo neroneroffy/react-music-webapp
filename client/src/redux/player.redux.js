@@ -126,14 +126,16 @@ export function addMusic (data) {
     }
 }
 export function delMusic (id) {
-    let index = ""
+    let index = "";
+    console.log(id)
     songsData.forEach((v,i)=>{
         if(v.id === id){
             index = i
+            console.log(index)
         }
     });
-
-    songsData.splice(index+1,1);
+    console.log(songsData)
+    songsData.splice(index,1);
     console.log(songsData)
     return dispatch=>{
         dispatch(delAction(songsData))

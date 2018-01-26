@@ -78,6 +78,8 @@ class Player extends Component {
         audio.removeEventListener('canplay')
     }*/
     componentWillReceiveProps(nextProps){
+/*
+        console.log(nextProps.info)
         if(nextProps.currentSong !== this.state.currentMusic && nextProps.currentSong !== undefined){
             this.setState({
                 currentMusic:nextProps.currentSong
@@ -85,6 +87,7 @@ class Player extends Component {
                 this.play()
             })
         }
+*/
 
     }
 
@@ -371,53 +374,48 @@ class Player extends Component {
         })
     }
     delMusic(i,id){
-        let audio = this.refs.audio;
-        console.log(i)
+
         this.setState({})
         if(this.props.info[i].src === this.state.currentMusic.src){
-            console.log('删除的是播放的')
-            if(i<=this.props.info.length-1 && this.props.info[i+1]){
-                this.setState({
-                    currentMusic:this.props.info[i+1]
-                },()=>{
-                    this.play()
-                    this.props.onDel(i,id);
-                })
-            }else if(!this.props.info[i+1] && this.props.info[i-1]){
-                console.log(`删的是最后一条`)
+            //只有一首歌，播放后删除，删除后停止播放；
+            if(this.props.info.length === 1){
+               this.props.onDel(this.props.info[i].id);
                 clearInterval(rotateTimer);
-
-                this.setState({
-                    currentMusic:this.props.info[0],
-                },()=>{
-                    this.play()
-                })
-                this.props.onDel(i,id);
-            }else{
-                //都删除完了
-                console.log(`都删除完了`)
-                clearInterval(rotateTimer);
-                audio.currentTime = 0;
-                this.refs.buffered.style.width = 0;
-                this.refs.played.style.width = 0;
                 this.setState({
                     currentMusic:{},
-                    isPlayed:false,
-                    musicListShow:false,
-
+                    totalTime:"00:00"
                 },()=>{
-                    this.props.onDel(i,id);
+                    this.refs.played.style.width =0
+                    this.refs.buffered.style.width =0
+                });
+                return
+            }
+            //播放的为最后一首，删除后播放第一首；
+            if(i === this.props.info.length-1){
+                this.props.onDel(this.props.info[i].id);
+                clearInterval(rotateTimer);
+                this.setState({
+                    currentMusic:this.props.info[0]
+                },()=>{
+                    this.play();
+                    return
                 })
-
-
+            }
+            //删除的不是唯一一首也不是最后一首，删除后正常播放下一首歌曲
+            if(i < this.props.info.length-1){
+                this.props.onDel(this.props.info[i].id);
+                clearInterval(rotateTimer);
+                this.setState({
+                    currentMusic:this.props.info[i]
+                },()=>{
+                    this.play();
+                    return
+                })
             }
         }else{
-            console.log(`删除的不是播放的`)
-            console.log(i)
-            this.props.onDel(i,id);
-
+            //删除的不是播放的：直接删除
+            this.props.onDel(this.props.info[i ].id);
         }
-
 
     }
 
@@ -506,6 +504,7 @@ class Player extends Component {
                         <audio src={this.state.currentMusic.src?this.state.currentMusic.src:""} ref = "audio"></audio>
                     </div>
                 </div>
+
                 {/*播放列表*/}
                 <ReactCSSTransitionGroup
                     transitionName="music-list-show"

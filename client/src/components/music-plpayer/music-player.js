@@ -38,6 +38,7 @@ class MusicPlayer extends Component {
         return (
             <div id="music-player">
 
+
                 {
                     this.props.music.shouldRender?
                         <Player
