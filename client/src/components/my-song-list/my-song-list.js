@@ -9,7 +9,7 @@ class MySongList extends Component {
             selected: '',
         }
     }
-    onSelect = (opt) => {
+/*    onSelect = (opt) => {
         // console.log(opt.props.value);
         this.setState({
             visible: false,
@@ -20,7 +20,7 @@ class MySongList extends Component {
         this.setState({
             visible,
         });
-    };
+    }*/;
 
     render() {
         return (

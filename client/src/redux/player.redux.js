@@ -5,6 +5,7 @@ const GET_MUSIC = 'GET_MUSIC';
 const ADD_MUSIC = 'ADD_MUSIC';
 const THIS_MUSIC = 'THIS_MUSIC';
 const DEL_MUSIC = 'DEL_MUSIC';
+const ENDED = 'ENDED';
 const songsData = [
     {
         src:"http://qqma.tingge123.com:83/123/2016/10/青蛙乐队 - 小跳蛙.mp3",
@@ -76,6 +77,8 @@ const initialState = {
     songs:[],
     shouldRender:false
 };
+//播放我收藏的歌曲列表时候，当前播放的歌曲序号
+let current = -1
 //reducer
 export function music(state=initialState,action) {
     switch (action.type){
@@ -144,7 +147,49 @@ export function delMusic (id) {
 
 }
 export function playThis (data) {
-    return dispatch=>{
+
+    return (dispatch,getState)=>{
+
         dispatch(playThisAction(data))
+        let songList = getState().personal.songList
+        let currentSong =  getState().music.currentSong
+        songList.forEach((v,i)=>{
+            if(v.id === currentSong.id){
+                current = i
+            }
+        });
+        if(current===songList.length-1){
+            current=-1
+            console.log(`复位${current}`);
+        }
     }
+}
+export function playThisList(){
+        return (dispatch,getState)=>{
+            let songList = getState().personal.songList
+            if(getState().personal.play){
+                dispatch(playThisAction(songList[current+1]));
+
+                console.log(`现在播放的是第${current}首歌曲`);
+                console.log(`一共有${songList.length}首歌`);
+
+            }
+        }
+}
+
+export function resetCurrent () {
+    return (dispatch,getState)=>{
+        let songList = getState().personal.songList
+        let currentSong =  getState().music.currentSong
+        songList.forEach((v,i)=>{
+            if(v.id === currentSong.id){
+                current = i
+            }
+        });
+        if(current===songList.length-1){
+            current=-1
+            console.log(`复位${current}`);
+        }
+    }
+
 }

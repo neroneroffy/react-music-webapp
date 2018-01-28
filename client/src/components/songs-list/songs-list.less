@@ -16,6 +16,7 @@
       .item-title{
         font-size: 14px;
         .fontColor;
+        margin-top: 5px;
         margin-bottom: 10px;
       }
       .item-artist{
@@ -32,14 +33,24 @@
       }
     }
   }
+
   .current-played{
-    background: linear-gradient(90deg,#fff,#ffbf37);
+    position: relative;
+    &:before{
+      position: absolute;
+      content: "";
+      display: block;
+      width: 3px;
+      height: 50px;
+      background: #ffbf37;
+      left:0;
+    }
     .item-left{
       .item-title{
-        color: #8B8B8B;
+        color: #ffbf37;
       }
       .item-artist{
-        color: #8B8B8B;
+        color: #ffbf37;
       }
     }
   }

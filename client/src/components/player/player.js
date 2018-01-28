@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { fixedBody,looseBody } from '../../util/preventBackgroundScroll'
 import './player.less';
-import { playThis } from '../../redux/player.redux';
+import { playThis,playThisList } from '../../redux/player.redux';
+import { stopPlay } from '../../redux/personal.redux';
 import { connect } from 'react-redux';
 let rotateTimer = 0;
 @connect(
-    null,
-    { playThis }
+    state=>state.personal,
+    { playThis,playThisList,stopPlay }
 )
 
 class Player extends Component {
@@ -78,8 +79,7 @@ class Player extends Component {
         audio.removeEventListener('canplay')
     }*/
     componentWillReceiveProps(nextProps){
-/*
-        console.log(nextProps.info)
+        //当播放器当前没有播放歌曲时候，点击歌曲列表的某一首歌，开始播放
         if(nextProps.currentSong !== this.state.currentMusic && nextProps.currentSong !== undefined){
             this.setState({
                 currentMusic:nextProps.currentSong
@@ -87,7 +87,11 @@ class Player extends Component {
                 this.play()
             })
         }
-*/
+/*        if(nextProps.play){
+            console.log(nextProps)
+            this.play()
+        }*/
+
 
     }
 
@@ -128,27 +132,31 @@ class Player extends Component {
     last(){
         this.refs.played.style.width = 0;
         this.refs.buffered.style.width = 0;
-        this.setState({
-            angle:0
-        });
+        let songs = [];
+        if(this.props.play){
+            songs = this.props.songList
+        }else{
+            songs = this.props.info
+        }
+        this.setState({angle:0});
         if(!this.state.currentMusic.src){
             return
         }
         let current = ""
-        this.props.info.forEach((v,i)=>{
+        songs.forEach((v,i)=>{
             if (v.src === this.state.currentMusic.src){
                 current = i
             }
         });
         if(current>0){
             this.setState({
-                currentMusic:this.props.info[current-1]
+                currentMusic:songs[current-1]
             },()=>{
                 this.play()
             })
         }else{
             this.setState({
-                currentMusic:this.props.info[this.props.info.length-1]
+                currentMusic:songs[songs.length-1]
             },()=>{
                 this.play()
             })
@@ -212,17 +220,21 @@ class Player extends Component {
             });
             //播放完成后根据播放模式设置歌曲的顺序
             if(audio.ended){
+                console.log(8888);
                 clearInterval(rotateTimer)
-
-                if(this.state.mode === 'order'){
-                    this.next()
-                }else if(this.state.mode === 'random'){
-                    this.random()
-                }else if(this.state.mode === 'single'){
-                    this.setState({
-                        angle:0
-                    });
-                    this.play()
+                if(this.props.play){
+                    this.props.playThisList()
+                }else{
+                    if(this.state.mode === 'order'){
+                        this.next()
+                    }else if(this.state.mode === 'random'){
+                        this.random()
+                    }else if(this.state.mode === 'single'){
+                        this.setState({
+                            angle:0
+                        });
+                        this.play()
+                    }
                 }
             }
         });
@@ -234,21 +246,31 @@ class Player extends Component {
         if(!this.state.currentMusic.src){
             return
         }
-        let current = ""
-        this.props.info.forEach((v,i)=>{
+        this.setState({
+            angle:0
+        });
+        let current = "";
+        let songs = [];
+        if(this.props.play){
+            songs = this.props.songList
+        }else{
+            songs = this.props.info
+        }
+
+        songs.forEach((v,i)=>{
             if (v.src === this.state.currentMusic.src){
                 current = i
             }
         });
-        if(current<this.props.info.length-1){
+        if(current<songs.length-1){
             this.setState({
-                currentMusic:this.props.info[current+1]
+                currentMusic:songs[current+1]
             },()=>{
                 this.play()
             })
         }else{
             this.setState({
-                currentMusic:this.props.info[0]
+                currentMusic:songs[0]
             },()=>{
                 this.play()
             })
@@ -367,6 +389,7 @@ class Player extends Component {
         })
     }
     playThis(i){
+        this.props.stopPlay();
         this.setState({
             currentMusic:this.props.info[i]
         },()=>{

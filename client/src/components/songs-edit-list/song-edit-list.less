@@ -1,3 +1,77 @@
+@import "../../style/common.less";
+.select{
+  div{
+    width: 10px;
+    height: 10px;
+    margin-top: 8px;
+    border:1px solid #e4e4e4;
+    border-radius: 3px;
+  }
+  padding-right: 10px;
+}
+.selected{
+  position: relative;
+  div{
+    border-color: #ffbf37!important;
+    background:#ffbf37 ;
+  }
+  &:before{
+    content: "";
+    display: block;
+    width: 2px;
+    height: 5px;
+    background:#fff ;
+    transform: rotate(-45deg);
+    border-radius: 3px;
+    position: absolute;
+    top:12px;
+    left: 2px;
+  }
+  &:after{
+    content: "";
+    display: block;
+    width: 2px;
+    height: 8px;
+    background:#fff ;
+    transform: rotate(55deg);
+    border-radius: 3px;
+    position: absolute;
+    top:10px;
+    right: 14px;
+  }
+}
+.all-selected{
+  position: relative;
+  div{
+    border-color: #ffbf37!important;
+    background:#ffbf37 ;
+  }
+  &:before{
+    content: "";
+    display: block;
+    width: 2px;
+    height: 5px;
+    background:#fff ;
+    transform: rotate(-45deg);
+    border-radius: 3px;
+    position: absolute;
+    top:17px;
+    left: 2px;
+  }
+  &:after{
+    content: "";
+    display: block;
+    width: 2px;
+    height: 8px;
+    background:#fff ;
+    transform: rotate(55deg);
+    border-radius: 3px;
+    position: absolute;
+    top:15px;
+    right: 43px;
+  }
+}
+
 .option{
   position: fixed;
   top: 40px;
@@ -10,13 +84,34 @@
   justify-content: space-between;
   align-items: center;
   font-size: 12px;
-  color:#666666 ;
+  .fontColor;
   box-shadow: 0 0px 5px #e0e0e0;
-  .search{
-    height: 40px;
-    line-height: 40px;
-    padding-right: 10px;
+  .left{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .select{
+      .select;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      span{
+        line-height: 40px;
+      }
+      .fontColor;
+      div{
+        margin-top:0;
+        margin-right: 5px;
+      }
+
+    }
+    .search{
+      height: 40px;
+      line-height: 40px;
+      padding-right: 10px;
+    }
   }
+
   .edit{
     height: 40px;
     line-height: 40px;
@@ -38,7 +133,7 @@
   margin-top: 90px;
   .single-song{
     height: 50px;
-    padding:0 2.5%;
+    padding:8px 2.5% 0 2.5%;
     margin: 10px 0;
     .left{
       float: left;
@@ -47,24 +142,18 @@
       align-items: flex-start;
       width: 85%;
       .select{
-        div{
-          width: 10px;
-          height: 10px;
-          border:1px solid #e4e4e4;
-          border-radius: 3px;
-        }
-        padding-right: 10px;
+        .select
       }
       .songs-info{
         width: 100%;
         .name{
           font-size: 14px;
-          color: #666666;
-          margin-bottom: 10px;
+          .fontColor;
+          margin: 8px 0px 5px 0;
         }
         .artist{
           font-size: 12px;
-          margin-bottom: 5px;
+          margin-bottom: 0px;
           color: #969696;
         }
       }
@@ -79,6 +168,21 @@
       font-size: 28px;
       color: #ccc;
       font-weight:300;
+    }
+  }
+  .current-played{
+    position: relative;
+    &:before{
+      position: absolute;
+      content: "";
+      display: block;
+      width: 3px;
+      height: 50px;
+      background: #ffbf37;
+      left:0;
+    }
+    .name,.artist{
+      color: #ffbf37!important;
     }
   }
 }
