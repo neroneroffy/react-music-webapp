@@ -81,7 +81,7 @@ class Player extends Component {
     componentWillReceiveProps(nextProps){
         //当播放器当前没有播放歌曲时候，点击歌曲列表的某一首歌，开始播放
         if(nextProps.currentSong !== this.state.currentMusic && nextProps.currentSong !== undefined){
-
+            console.log(888);
             this.setState({
                 currentMusic:nextProps.currentSong,
                 angle:0
@@ -132,15 +132,14 @@ class Player extends Component {
 
     }
     last(){
-        this.refs.played.style.width = 0;
-        this.refs.buffered.style.width = 0;
+
         let songs = [];
         if(this.props.play){
             songs = this.props.songList
         }else{
             songs = this.props.info
         }
-        this.setState({angle:0});
+
         if(!this.state.currentMusic.src){
             return
         }
@@ -150,9 +149,18 @@ class Player extends Component {
                 current = i
             }
         });
+
+        //如果播放列表内就一首歌
+        if(current +1=== songs.length){
+            return
+        }
+        this.refs.played.style.width = 0;
+        this.refs.buffered.style.width = 0;
         if(current>0){
+
             this.setState({
-                currentMusic:songs[current-1]
+                currentMusic:songs[current-1],
+                angle:0
             },()=>{
                 this.play()
             })
@@ -243,14 +251,10 @@ class Player extends Component {
 
     }
     next(){
-        this.refs.played.style.width = 0;
-        this.refs.buffered.style.width = 0;
         if(!this.state.currentMusic.src){
             return
         }
-        this.setState({
-            angle:0
-        });
+
         let current = "";
         let songs = [];
         if(this.props.play){
@@ -264,15 +268,24 @@ class Player extends Component {
                 current = i
             }
         });
+        //如果播放列表内就一首歌
+        if(current +1=== songs.length){
+            return
+        }
+        this.refs.played.style.width = 0;
+        this.refs.buffered.style.width = 0;
         if(current<songs.length-1){
             this.setState({
-                currentMusic:songs[current+1]
+                currentMusic:songs[current+1],
+                angle:0
+
             },()=>{
                 this.play()
             })
         }else{
             this.setState({
-                currentMusic:songs[0]
+                currentMusic:songs[0],
+                angle:0
             },()=>{
                 this.play()
             })
