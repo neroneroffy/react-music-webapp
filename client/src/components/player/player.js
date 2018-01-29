@@ -459,10 +459,12 @@ class Player extends Component {
 
     //展示播放详情页
     playDetail(){
+
         this.setState({
             playDetail:true,
         },()=>{
             fixedBody();//阻止滚动穿透
+            this.refs.detailMusicImg.style.transform = `rotate(${this.state.angle}deg)`;//展开播放详情页的时候，设置图片转动角度与底部播放器封面图片角度相同
             this.setState({
                 detailPlayedLeft:this.refs.detailPlayed.getBoundingClientRect().left
             })
