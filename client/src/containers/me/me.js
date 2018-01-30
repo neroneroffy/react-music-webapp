@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import { getSummary } from '../../redux/personal.redux';
-import { Icon } from 'antd-mobile';
+import { Icon,Modal } from 'antd-mobile';
 import MySongList from '../../components/my-song-list/my-song-list';
 import { Link } from 'react-router-dom';
 import './me.less'
 import { connect } from 'react-redux';
+const prompt = Modal.prompt;
 @connect(
     state=>state.personal,
     { getSummary }
@@ -14,11 +15,20 @@ class Me extends Component {
         super(props);
         this.state = {
             userId:5
-        }
+        };
+        this.newSongList = this.newSongList.bind(this)
     }
     componentDidMount(){
         this.props.getSummary(this.state.userId)
     }
+    newSongList(){
+        prompt(
+            '新建歌单', '请输入歌单名称', [
+                { text: '取消' },
+                { text: '确定', onPress: value => console.log(`输入的内容:${value}`) },
+            ]
+        )}
+
     render() {
         return (
             <div id="me">
@@ -52,7 +62,7 @@ class Me extends Component {
                             <div className="my-song-list">
                                 <div className="top">
                                     <div className="left">我创建的歌单</div>
-                                    <div className="right">
+                                    <div className="right" onClick={this.newSongList}>
                                         <span>新建</span>
                                         <span>+</span>
                                     </div>

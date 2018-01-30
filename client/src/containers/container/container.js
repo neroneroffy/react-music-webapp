@@ -6,6 +6,7 @@ import Discover from '../discover/discover';
 import SongListDetail from '../song-list-detail/song-list-detail';
 import AlbumDetail from '../album-detail/album-detail';
 import CollectSongs from '../collect-songs/collect-songs';
+import CollectSongList from '../collect-song-list/collect-song-list';
 import { setRoute } from '../../util/backTo'
 @withRouter
 class Container extends Component {
@@ -32,6 +33,7 @@ class Container extends Component {
                 <Route path={`/songlistdetail/:id`} component={SongListDetail}></Route>
                 <Route path={`/albumdetail/:id`} component={AlbumDetail}></Route>
                 <Route path={`/collectsongs/:id`} component={CollectSongs}></Route>
+                <Route path={`/collectsonglist/:id`} component={CollectSongList}></Route>
             </div>
         )
     }

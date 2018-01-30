@@ -18,7 +18,7 @@ class YellowHeader extends Component {
                            返回
                         </span>
                 </Link>
-                <div className="title">收藏的单曲</div>
+                <div className="title">{this.props.title}</div>
             </div>
         )
     }

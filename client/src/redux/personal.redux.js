@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Toast } from 'antd-mobile'
 const GET_SUMMARY = "GET_SUMMARY";
 const GET_SONGS = "GET_SONGS";
+const GET_SONG_LIST = "GET_SONG_LIST";
 const MARK_SONGS = "MARK_SONGS";
 const DEL_SONGS = "DEL_SONGS";
 const BEGIN_PLAY = "BEGIN_PLAY";
@@ -12,6 +13,7 @@ const STOP_PLAY = "STOP_PLAY";
 const initialState = {
     summary:"",
     songList:"",
+    collectSongList:"",
     play:false
 };
 
@@ -21,6 +23,8 @@ export function personal( state=initialState,action ) {
             return { ...state,summary:action.payload };
         case GET_SONGS:
             return { ...state,songList:action.payload };
+        case GET_SONG_LIST:
+            return { ...state,collectSongList:action.payload };
         case MARK_SONGS:
             return { ...state,songList:action.payload };
         case DEL_SONGS:
@@ -43,6 +47,12 @@ function getSummaryAction(data) {
 function getSongsAction(data) {
     return {
         type:GET_SONGS,
+        payload:data
+    }
+}
+function getSongListAction(data) {
+    return {
+        type:GET_SONG_LIST,
         payload:data
     }
 }
@@ -77,6 +87,17 @@ export function getSongs(id) {
             let data = res.data;
             if(data.result){
                 dispatch(getSongsAction(data.data))
+            }
+        })
+    }
+}
+//获取收藏的歌单
+export function getCollectSongList(id) {
+    return dispatch=>{
+        axios.get(`/mock/personal${id}/collectSongList.json`).then(res=>{
+            let data = res.data;
+            if(data.result){
+                dispatch(getSongListAction(data.data))
             }
         })
     }

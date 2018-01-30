@@ -151,17 +151,20 @@ export function playThis (data) {
     return (dispatch,getState)=>{
 
         dispatch(playThisAction(data))
-        let songList = getState().personal.songList
-        let currentSong =  getState().music.currentSong
-        songList.forEach((v,i)=>{
-            if(v.id === currentSong.id){
-                current = i
+        if(getState().personal.play){
+            let songList = getState().personal.songList
+            let currentSong =  getState().music.currentSong
+            songList.forEach((v,i)=>{
+                if(v.id === currentSong.id){
+                    current = i
+                }
+            });
+            if(current===songList.length-1){
+                current=-1
+                console.log(`复位${current}`);
             }
-        });
-        if(current===songList.length-1){
-            current=-1
-            console.log(`复位${current}`);
         }
+
     }
 }
 export function playThisList(){

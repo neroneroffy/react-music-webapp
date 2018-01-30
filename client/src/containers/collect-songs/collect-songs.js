@@ -20,10 +20,10 @@ class CollectSongs extends Component {
     render() {
         return (
             <div id="collect-songs">
-                <YellowHeader></YellowHeader>
+                <YellowHeader title="收藏的歌曲"/>
                 {
                     this.props.songList?
-                        <SongEditList data={this.props.songList}></SongEditList>
+                        <SongEditList data={this.props.songList}/>
                         :
                         ""
                 }
