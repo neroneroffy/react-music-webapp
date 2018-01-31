@@ -81,9 +81,11 @@ export function getSummary(id) {
     }
 }
 //获取收藏的歌曲列表
-export function getSongs(id) {
+export function getSongs(id,songListId) {
     return dispatch=>{
-        axios.get(`/mock/personal${id}/collectSongs.json`).then(res=>{
+        //依据有没有歌单id判断请求哪个资源，这里把请求收藏的单曲和请求收藏的歌单内的单曲整合到一起
+       let url = songListId? `/mock/personal${id}/songsInSongList${songListId}.json` : `/mock/personal${id}/collectSongs.json`;
+        axios.get(url).then(res=>{
             let data = res.data;
             if(data.result){
                 dispatch(getSongsAction(data.data))

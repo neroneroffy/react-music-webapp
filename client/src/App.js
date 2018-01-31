@@ -4,7 +4,9 @@ import store from './store';
 import Router from './router';
 import './App.css'
 class App extends Component {
-
+componentDidMount(){
+    sessionStorage.setItem("userId","5")
+}
   render() {
     return (
       <Provider store={store}>

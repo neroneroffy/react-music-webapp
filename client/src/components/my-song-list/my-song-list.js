@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './my-song-list.less';
+import { Link } from 'react-router-dom';
 import QueueAnim from 'rc-queue-anim';
 class MySongList extends Component {
     constructor(props) {
@@ -29,7 +30,7 @@ class MySongList extends Component {
                 {
                     this.props.data.map(v=>(
                         <div className="list-item" key={v.id}>
-                            <div className="left">
+                            <Link to={`/collectsonglistdetail/${v.id}`} className="left">
                                 <div className="cover">
                                     <img src={v.cover} alt=""/>
                                 </div>
@@ -38,7 +39,7 @@ class MySongList extends Component {
                                     <div className="num">{v.num} 首歌曲</div>
                                 </div>
 
-                            </div>
+                            </Link>
                             <div className="right">
                                 删除
                             </div>

@@ -14,12 +14,17 @@ class Me extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userId:5
+            userId:""
         };
         this.newSongList = this.newSongList.bind(this)
     }
     componentDidMount(){
-        this.props.getSummary(this.state.userId)
+        this.setState({
+            userId:sessionStorage.getItem('userId')
+        },()=>{
+            this.props.getSummary(this.state.userId)
+        })
+
     }
     newSongList(){
         prompt(
@@ -46,7 +51,7 @@ class Me extends Component {
                                     <Icon type="right"></Icon>
                                 </div>
                             </div>
-                            <Link to={`/collectsongs/${this.state.userId}`} className="personal-item">
+                            <Link to={`/collectsongs`} className="personal-item">
                                 <div className="title">收藏的单曲</div>
                                 <div className="right">
                                     <Icon type="right"></Icon>

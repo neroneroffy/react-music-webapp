@@ -12,15 +12,22 @@ import './collect-songs.less'
 class CollectSongs extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            userId:""
+        };
     }
     componentDidMount(){
-        this.props.getSongs(this.props.match.params.id)
+        this.setState({
+            userId:sessionStorage.getItem('userId')
+        },()=>{
+            this.props.getSongs(this.state.userId,this.props.match.params.id)
+        })
+
     }
     render() {
         return (
             <div id="collect-songs">
-                <YellowHeader title="收藏的歌曲"/>
+                <YellowHeader title={this.props.match.params.id?"歌单内的歌曲":"收藏的歌曲"}/>
                 {
                     this.props.songList?
                         <SongEditList data={this.props.songList}/>

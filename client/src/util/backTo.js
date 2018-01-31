@@ -5,5 +5,9 @@ export function setRoute (path) {
     sessionStorage.setItem('route',path)
 }
 export function getRoute () {
+
+    if(sessionStorage.getItem('route').indexOf("collectsonglistdetail")>0){
+        return '/me'
+    }
     return sessionStorage.getItem('route')
 }
