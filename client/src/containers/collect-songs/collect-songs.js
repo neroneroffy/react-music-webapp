@@ -27,7 +27,7 @@ class CollectSongs extends Component {
     render() {
         return (
             <div id="collect-songs">
-                <YellowHeader title={this.props.match.params.id?"歌单内的歌曲":"收藏的歌曲"}/>
+                <YellowHeader title={this.props.match.params.id?"歌单详情":"收藏的歌曲"}/>
                 {
                     this.props.songList?
                         <SongEditList data={this.props.songList}/>

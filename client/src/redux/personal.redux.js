@@ -10,6 +10,7 @@ const MARK_SONGS = "MARK_SONGS";
 const DEL_SONGS = "DEL_SONGS";
 const BEGIN_PLAY = "BEGIN_PLAY";
 const STOP_PLAY = "STOP_PLAY";
+const DEL_SONG_LIST = "DEL_SONG_LIST";
 const initialState = {
     summary:"",
     songList:"",
@@ -24,6 +25,8 @@ export function personal( state=initialState,action ) {
         case GET_SONGS:
             return { ...state,songList:action.payload };
         case GET_SONG_LIST:
+            return { ...state,collectSongList:action.payload };
+        case DEL_SONG_LIST:
             return { ...state,collectSongList:action.payload };
         case MARK_SONGS:
             return { ...state,songList:action.payload };
@@ -63,9 +66,14 @@ function markSongsAction(data){
     }
 }
 function delSongsAction(data){
-    console.log(data)
     return {
         type:DEL_SONGS,
+        payload:data
+    }
+}
+function delSongListAction(data){
+    return {
+        type:DEL_SONG_LIST,
         payload:data
     }
 }
@@ -102,6 +110,21 @@ export function getCollectSongList(id) {
                 dispatch(getSongListAction(data.data))
             }
         })
+    }
+}
+//删除歌单
+export function delCollectSongList(id,userId) {
+    return (dispatch,getState)=>{
+        let currentList = window.location.pathname === '/me'?getState().personal.summary.mySongList : getState().personal.collectSongList;
+        console.log(currentList);
+        let delIndex = currentList.findIndex((value,index,arr)=>{
+
+            return value.id ===id
+        });
+        console.log(delIndex)
+        currentList.splice(delIndex,1)
+        console.log(currentList)
+        dispatch(delSongListAction(currentList))
     }
 }
 //选择歌曲时候给选中歌曲添加标记

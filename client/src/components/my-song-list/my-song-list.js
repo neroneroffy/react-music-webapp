@@ -2,13 +2,31 @@ import React, {Component} from 'react';
 import './my-song-list.less';
 import { Link } from 'react-router-dom';
 import QueueAnim from 'rc-queue-anim';
+import { Modal, Button } from 'antd-mobile';
+import { delCollectSongList } from '../../redux/personal.redux';
+import { connect } from 'react-redux';
+
+@connect(
+    state=>state,
+    { delCollectSongList }
+)
 class MySongList extends Component {
     constructor(props) {
         super(props);
         this.state = {
             visible: true,
             selected: '',
+            userId:sessionStorage.getItem('userId')
         }
+        this.deleteSongList = this.deleteSongList.bind(this)
+    }
+    deleteSongList(id){
+        Modal.alert('确认删除歌单？', '歌单内的歌曲会一并删除', [
+            { text: '取消', onPress: () => console.log('cancel') },
+            { text: '确认', onPress: () => {
+                this.props.delCollectSongList(id,this.state.userId)
+            } },
+        ])
     }
 /*    onSelect = (opt) => {
         // console.log(opt.props.value);
@@ -40,7 +58,7 @@ class MySongList extends Component {
                                 </div>
 
                             </Link>
-                            <div className="right">
+                            <div className="right" onClick={()=>{this.deleteSongList(v.id)}}>
                                 删除
                             </div>
                         </div>
