@@ -65,7 +65,7 @@ export function getComment (id,pageNum) {
         })
     }
 }
-export function clearCommect() {
+export function clearComment() {
     return dispatch=>{
         dispatch(clearCommentAction())
     }

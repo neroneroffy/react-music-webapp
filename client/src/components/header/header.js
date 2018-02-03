@@ -17,6 +17,7 @@ class Header extends Component {
         window.addEventListener('scroll', this.handleScroll);
     }
     handleScroll(){
+
         if(window.scrollY>10){
             this.refs.header.style.background = "rgba(0,0,0,0.5)";
 

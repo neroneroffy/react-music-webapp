@@ -1,6 +1,7 @@
 /**
  * Created by haita on 2018/1/8 0008.
  */
+import { Toast } from 'antd-mobile';
 const GET_MUSIC = 'GET_MUSIC';
 const ADD_MUSIC = 'ADD_MUSIC';
 const THIS_MUSIC = 'THIS_MUSIC';
@@ -126,6 +127,7 @@ export function addMusic (data) {
     songsData.push(data)
     return dispatch=>{
         dispatch(addAction(data))
+        Toast.success('加入播放列表成功', 1);
     }
 }
 export function delMusic (id) {
