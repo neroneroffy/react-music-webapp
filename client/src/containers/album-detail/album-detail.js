@@ -31,7 +31,7 @@ class AlbumDetail extends Component {
             pageNum:1,
             scaleStep:1
         };
-        this.tabChange = this.tabChange.bind(this)
+        this.tabChange = this.tabChange.bind(this);
         this.albumScroll = this.albumScroll.bind(this)
     }
     componentDidMount(){
@@ -44,7 +44,8 @@ class AlbumDetail extends Component {
 
             this.refs.albumCover.style.position = "fixed";
             this.refs.albumCover.style.top = "-30px";
-            this.refs.albumCover.style.zIndex = "2500"
+            this.refs.albumCover.style.zIndex = "2500";
+            document.getElementsByClassName('am-tabs-content-wrap')[0].style.marginTop='130px'
 /*            this.setState({
                 scaleStep:this.state.scaleStep-0.02
             })*/
@@ -62,7 +63,7 @@ class AlbumDetail extends Component {
             }
             lastScrollY = window.scrollY*/
 
-
+            document.getElementsByClassName('am-tabs-content-wrap')[0].style.marginTop='0px'
             this.refs.albumCover.style.position = "relative";
             this.refs.albumCover.style.top = "0";
 
