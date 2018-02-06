@@ -8,12 +8,14 @@ import { songsListDetail } from './redux/song-list-detail.redux'
 import { comment } from './redux/comment.redux'
 import { album } from './redux/album.redux'
 import { personal } from './redux/personal.redux'
+import { discovery } from './redux/discovery.redux'
 const rootReducer = combineReducers({
     music,
     repertoire,
     songsListDetail,
     comment,
     album,
-    personal
+    personal,
+    discovery
 });
 export default rootReducer
