@@ -1,30 +1,24 @@
 {
   "result":true,
   "data":{
-    "allListening":[
+    "ranking":[
       {
-        "title":"Music",
-        "desc":"MusicMusicMusicMusicMusic",
-        "id":"1",
-        "cover":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517922290457&di=8d06aa157d9caa5e156d01ce9025a1bf&imgtype=0&src=http%3A%2F%2Fn1.itc.cn%2Fimg8%2Fwb%2Frecom%2F2016%2F02%2F25%2F145634808062643638.JPEG"
+        "name":"美国Bill-Board排行榜",
+        "desc":"最权威的音乐排行榜",
+        "id":"3001",
+        "cover":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517997792218&di=a41fd80f8ff27b493eb60b2cc3a4df51&imgtype=0&src=http%3A%2F%2Fupload.qianhuaweb.com%2F2016%2F0927%2F1474960678388.jpg"
       },
       {
-        "title":"Music2",
-        "desc":"MusicMusicMusicMusicMusic",
-        "id":"2",
-        "cover":"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1297105703,3175147722&fm=27&gp=0.jpg"
+        "name":"日本Qricon周榜",
+        "desc":"日本影响最大的音乐榜单",
+        "id":"3002",
+        "cover":"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=229417647,1800162215&fm=27&gp=0.jpg"
       },
       {
-        "title":"Music3",
-        "desc":"MusicMusicMusicMusicMusic",
-        "id":"3",
-        "cover":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=404189816,2709240765&fm=27&gp=0.jpg"
-      },
-      {
-        "title":"Music4",
-        "desc":"MusicMusicMusicMusicMusic",
-        "id":"4",
-        "cover":"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=302390327,216012538&fm=27&gp=0.jpg"
+        "name":"华语歌曲排行榜",
+        "desc":"中国内地音乐流行风向标",
+        "id":"3003",
+        "cover":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1518592748&di=61a97183e2387373f703b653ab283d67&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.ttpaihang.com%2Fimage%2Fvote%2Fu150621165143890818.jpg"
       }
     ],
     "style":[

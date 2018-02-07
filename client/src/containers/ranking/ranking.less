@@ -1,4 +1,35 @@
+@import "../../style/common";
 #ranking{
-  margin:50px 0 70px 0;
-
+  margin:60px 0 90px 0;
+  .ranking-wrapper{
+    .rank-item{
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding:0 2.5%;
+      margin:20px 0;
+      .left{
+        width: 70px;
+        height: 70px;
+        border-radius: 5px;
+        overflow: hidden;
+        font-size: 0;
+        margin-right: 10px;
+        img{
+          width: 100%;
+        }
+      }
+      .right{
+        .title{
+          font-size: 16px;
+          .fontColor;
+          margin-bottom: 10px;
+        }
+        .des{
+          font-size: 14px;
+          color: #888888;
+        }
+      }
+    }
+  }
 }

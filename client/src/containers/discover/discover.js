@@ -21,6 +21,7 @@ class Discover extends Component {
     }
 
     render() {
+
         return (
             <div id="discover">
                 <div className="discover-wrapper">
@@ -39,20 +40,21 @@ class Discover extends Component {
                             dotStyle={{"display":"none"}}
                             dotActiveStyle={{"display":"none"}}
                         >
-                            {   this.props.data?
-                                this.props.data.allListening.map(val => (
+                            {
+                                this.props.data?
+                                this.props.data.ranking.map(val => (
                                 <div className="all-listening-item" key={val.id}>
                                     <div className="item-left">
                                         <img src={val.cover} alt=""/>
                                     </div>
                                     <div className="item-right">
-                                        <div className="item-title">{val.title}</div>
+                                        <div className="item-title">{val.name}</div>
                                         <div className="item-desc">{val.desc}</div>
                                     </div>
                                 </div>
-                            ))
-                            :
-                            ""
+                                ))
+                                    :
+                                ""
                             }
                         </Carousel>
                     </div>
