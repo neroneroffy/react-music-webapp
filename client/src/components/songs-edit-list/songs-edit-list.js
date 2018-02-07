@@ -82,7 +82,7 @@ class SongEditList extends Component {
         }
         return (
             <div id="edit-list">
-                <div className="option">
+                <div className="option" style={this.props.style}>
                     <div className="left">
                         {
                             this.state.edit && this.props.data.length!==0?
@@ -93,7 +93,7 @@ class SongEditList extends Component {
                         <div className="search" onClick={this.beginPlay}>播放</div>
                     </div>
                     {
-                        !this.state.edit?
+                        !this.state.edit && this.props.option?
                             <div className="edit" onClick={this.edit}>操作</div>
                             :
                             ""
@@ -110,7 +110,7 @@ class SongEditList extends Component {
                     }
                 </div>
                 {/*内容*/}
-                <div className="song-edit-list">
+                <div className="song-edit-list" style={this.props.listStyle}>
                     <QueueAnim delay={300} type="top">
                     {
                         this.props.data.map(v=>(

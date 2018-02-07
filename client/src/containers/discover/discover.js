@@ -21,7 +21,6 @@ class Discover extends Component {
     }
 
     render() {
-
         return (
             <div id="discover">
                 <div className="discover-wrapper">

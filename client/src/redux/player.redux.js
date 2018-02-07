@@ -152,10 +152,10 @@ export function playThis (data) {
 
     return (dispatch,getState)=>{
 
-        dispatch(playThisAction(data))
+        dispatch(playThisAction(data));
         if(getState().personal.play){
-            let songList = getState().personal.songList
-            let currentSong =  getState().music.currentSong
+            let songList = getState().personal.songList;
+            let currentSong =  getState().music.currentSong;
             songList.forEach((v,i)=>{
                 if(v.id === currentSong.id){
                     current = i

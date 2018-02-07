@@ -30,7 +30,7 @@ class CollectSongs extends Component {
                 <YellowHeader title={this.props.match.params.id?"歌单详情":"收藏的歌曲"}/>
                 {
                     this.props.songList?
-                        <SongEditList data={this.props.songList}/>
+                        <SongEditList option={true} data={this.props.songList} style={{"position":"fixed","top":"40px","left":"0"}} listStyle={{"marginTop":"90px"}}/>
                         :
                         ""
                 }
