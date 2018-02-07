@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './discover.less';
-import {Carousel} from 'antd-mobile';
+import { Link } from 'react-router-dom';
+import {Carousel,Icon} from 'antd-mobile';
 import Title from '../../components/title';
 import WhiteSpace from '../../components/whiteSpace';
 import { getDiscoveryData } from '../../redux/discovery.redux';
@@ -20,11 +21,16 @@ class Discover extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div id="discover">
                 <div className="discover-wrapper">
-                    <Title title="他们都在听"/>
+                    <Link to="/search" className="search-route">
+                        <div className="search-inner">
+                            <Icon type="search" size="sm" />
+                            <div>输入歌曲名</div>
+                        </div>
+                    </Link>
+                    <Title title="排行榜" linkTo="/ranking"/>
                     <div className="all-listening">
                         <Carousel
                             autoplay={true}

@@ -81,7 +81,6 @@ class Player extends Component {
     componentWillReceiveProps(nextProps){
         //当播放器当前没有播放歌曲时候，点击歌曲列表的某一首歌，开始播放
         if(nextProps.currentSong !== this.state.currentMusic && nextProps.currentSong !== undefined){
-            console.log(888);
             this.setState({
                 currentMusic:nextProps.currentSong,
                 angle:0

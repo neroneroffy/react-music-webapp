@@ -7,12 +7,14 @@ import SongListDetail from '../song-list-detail/song-list-detail';
 import AlbumDetail from '../album-detail/album-detail';
 import CollectSongs from '../collect-songs/collect-songs';
 import CollectSongList from '../collect-song-list/collect-song-list';
+import Search from '../search/search';
+import Ranking from '../ranking/ranking';
 
 import { setRoute } from '../../util/backTo'
 @withRouter
 class Container extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {}
     }
     componentDidMount(){
@@ -22,20 +24,21 @@ class Container extends Component {
         }
     }
     componentWillUpdate(){
-        console.log(this.props)
         setRoute(this.props.location.pathname)
     }
     render() {
         return (
             <div id="container">
-                <Route path={`/repertoire`} component={Repertoire}></Route>
-                <Route path={`/me`} component={Me}></Route>
-                <Route path={`/discover`} component={Discover}></Route>
-                <Route path={`/songlistdetail/:id`} component={SongListDetail}></Route>
-                <Route path={`/albumdetail/:id`} component={AlbumDetail}></Route>
-                <Route path={`/collectsongs`} component={CollectSongs}></Route>
-                <Route path={`/collectsonglist/:id`} component={CollectSongList}></Route>
-                <Route path={`/collectsonglistdetail/:id`} component={CollectSongs}></Route>
+                <Route path={`/repertoire`} component={Repertoire}/>
+                <Route path={`/me`} component={Me}/>
+                <Route path={`/discover`} component={Discover}/>
+                <Route path={`/songlistdetail/:id`} component={SongListDetail}/>
+                <Route path={`/albumdetail/:id`} component={AlbumDetail}/>
+                <Route path={`/collectsongs`} component={CollectSongs}/>
+                <Route path={`/collectsonglist/:id`} component={CollectSongList}/>
+                <Route path={`/collectsonglistdetail/:id`} component={CollectSongs}/>
+                <Route path={`/search`} component={Search}/>
+                <Route path={`/ranking`} component={Ranking}/>
             </div>
         )
     }
