@@ -20,7 +20,12 @@ class CollectSongs extends Component {
         this.setState({
             userId:sessionStorage.getItem('userId')
         },()=>{
-            this.props.getSongs(this.state.userId,this.props.match.params.id)
+
+            let url = `/mock/personal${this.state.userId}/collectSongs.json`;
+            if(this.props.match.params.id){
+                url = `/mock/personal${this.state.userId}/songsInSongList${this.props.match.params.id}.json`;
+            }
+            this.props.getSongs(url)
         })
 
     }

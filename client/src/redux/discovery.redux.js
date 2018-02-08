@@ -2,12 +2,11 @@ import axios from 'axios';
 const GET_DATA = "GET_DATA";
 const GET_RANK_LIST = "GET_RANK_LIST";
 const GET_RANK_DETAIL = "GET_RANK_DETAIL";
-const GET_RANK_DETAIL_LIST = "GET_RANK_DETAIL_LIST";
+const CLEAR_DETAIL = "CLEAR_DETAIL";
 const initialState = {
     data:"",
     rankList:"",
-    rankDetail:"",
-    rankDetailList:""
+    rankDetail:""
 };
 
 export function discovery(state = initialState,action) {
@@ -18,8 +17,8 @@ export function discovery(state = initialState,action) {
             return { ...state,rankList:action.payload };
         case GET_RANK_DETAIL:
             return { ...state,rankDetail:action.payload };
-        case GET_RANK_DETAIL_LIST:
-            return { ...state,rankDetailList:action.payload };
+        case CLEAR_DETAIL:
+            return { ...state,rankDetail:"" };
         default:
             return state;
     }
@@ -43,13 +42,12 @@ function getRankDetailAction(data) {
         payload:data
     }
 }
-function getRankDetailListAction(data) {
+
+function celarDetail() {
     return {
-        type:GET_RANK_DETAIL_LIST,
-        payload:data
+        type:CLEAR_DETAIL
     }
 }
-
 export function getDiscoveryData() {
     return dispatch=>{
         axios.get(`/mock/discovery/discovery.json`).then(response=>{
@@ -74,27 +72,13 @@ export function getRankList() {
 
 export function getRankDetail(id) {
     return dispatch=>{
+        dispatch(celarDetail());
         axios.get(`/mock/discovery/ranking-detail${id}.json`).then(response=>{
             let res = response.data;
             if(res.result){
                 dispatch(getRankDetailAction(res.data));
-                axios.get(`/mock/discovery/ranking-detail${id}list1.json`).then(response=>{
-                    let res = response.data;
-                    if(res.result){
-                        dispatch(getRankDetailListAction(res.data))
-                    }
-                })
             }
         })
     }
 }
-export function getRankDetailList(id,num) {
-    return dispatch=>{
-        axios.get(`/mock/discovery//ranking-detail${id}list${num}.json`).then(response=>{
-            let res = response.data;
-            if(res.result){
-                dispatch(getRankDetailListAction(res.data))
-            }
-        })
-    }
-}
+

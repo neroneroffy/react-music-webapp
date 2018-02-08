@@ -5,6 +5,7 @@ const MARK_SONGS = "MARK_SONGS";
 const DEL_SONGS = "DEL_SONGS";
 const BEGIN_PLAY = "BEGIN_PLAY";
 const STOP_PLAY = "STOP_PLAY";
+const CLEAR_SONGS = "CLEAR_SONGS";
 const initialState = {
     songs:"",
     play:false
@@ -18,6 +19,8 @@ export function publicSongs( state=initialState,action ) {
             return { ...state,songs:action.payload };
         case DEL_SONGS:
             return { ...state,songs:action.payload };
+        case CLEAR_SONGS:
+            return { ...state,songs:"" };
         case BEGIN_PLAY:
             return { ...state,play:true };
         case STOP_PLAY:
@@ -46,12 +49,16 @@ function delSongsAction(data){
         payload:data
     }
 }
+function clearSongs() {
+    return {
+        type:CLEAR_SONGS
+    }
+}
 
-//获取收藏的歌曲列表
-export function getSongs(id,songListId) {
+//获取歌曲列表
+export function getSongs(url) {
     return dispatch=>{
-        //依据有没有歌单id判断请求哪个资源，这里把请求收藏的单曲和请求收藏的歌单内的单曲整合到一起
-        let url = songListId? `/mock/personal${id}/songsInSongList${songListId}.json` : `/mock/personal${id}/collectSongs.json`;
+        dispatch(clearSongs())
         axios.get(url).then(res=>{
             let data = res.data;
             if(data.result){
