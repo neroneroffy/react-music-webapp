@@ -19,6 +19,7 @@ class Container extends Component {
         this.state = {}
     }
     componentDidMount(){
+        console.log(window.location.pathname)
         /*用正则匹配出来pathname*/
         if(this.props.location.pathname === '/'){
             this.props.history.push('/repertoire')
