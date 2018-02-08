@@ -9,6 +9,7 @@ import { comment } from './redux/comment.redux'
 import { album } from './redux/album.redux'
 import { personal } from './redux/personal.redux'
 import { discovery } from './redux/discovery.redux'
+import { publicSongs } from './redux/publicSongs.redux'
 const rootReducer = combineReducers({
     music,
     repertoire,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     comment,
     album,
     personal,
+    publicSongs,
     discovery
 });
 export default rootReducer

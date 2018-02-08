@@ -3,11 +3,11 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { fixedBody,looseBody } from '../../util/preventBackgroundScroll'
 import './player.less';
 import { playThis,playThisList } from '../../redux/player.redux';
-import { stopPlay } from '../../redux/personal.redux';
+import { stopPlay } from '../../redux/publicSongs.redux';
 import { connect } from 'react-redux';
 let rotateTimer = 0;
 @connect(
-    state=>state.personal,
+    state=>state.publicSongs,
     { playThis,playThisList,stopPlay }
 )
 
@@ -134,7 +134,7 @@ class Player extends Component {
 
         let songs = [];
         if(this.props.play){
-            songs = this.props.songList
+            songs = this.props.songs
         }else{
             songs = this.props.info
         }
@@ -150,7 +150,7 @@ class Player extends Component {
         });
 
         //如果播放列表内就一首歌
-        if(current +1=== songs.length){
+        if(songs.length === 1){
             return
         }
         this.refs.played.style.width = 0;
@@ -229,7 +229,6 @@ class Player extends Component {
             });
             //播放完成后根据播放模式设置歌曲的顺序
             if(audio.ended){
-                console.log(8888);
                 clearInterval(rotateTimer)
                 if(this.props.play){
                     this.props.playThisList()
@@ -257,7 +256,7 @@ class Player extends Component {
         let current = "";
         let songs = [];
         if(this.props.play){
-            songs = this.props.songList
+            songs = this.props.songs
         }else{
             songs = this.props.info
         }
@@ -268,7 +267,8 @@ class Player extends Component {
             }
         });
         //如果播放列表内就一首歌
-        if(current +1=== songs.length){
+        if(songs.length === 1){
+            console.log(`就一首歌`)
             return
         }
         this.refs.played.style.width = 0;

@@ -15,12 +15,14 @@ class ReactComponent extends Component {
         this.state = {}
     };
     componentDidMount(){
-        this.props.getRankDetail(this.props.match.params.id);
+       let data = JSON.parse(this.props.match.params.data)
+        this.props.getRankDetail(data.id);
+        console.log(data)
     }
     render() {
         return (
             <div id="ranking-detail">
-                <Header text="榜单详情"/>
+                <Header text={`${JSON.parse(this.props.match.params.data).rankName}`}/>
                 {
                     this.props.rankDetail?
                         <div className="ranking-header">
@@ -31,7 +33,7 @@ class ReactComponent extends Component {
                 }
                 {
                     this.props.rankDetailList?
-                        <SongList data={this.props.rankDetailList} option={false}/>
+                        <SongList data={this.props.rankDetailList} order={true} style={{"position":"sticky","top":"40px","left":"0"}} option={false}/>
                         :
                         ""
                 }

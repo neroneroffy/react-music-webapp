@@ -42,7 +42,7 @@ class Discover extends Component {
                             {
                                 this.props.data?
                                 this.props.data.ranking.map(val => (
-                                <div className="all-listening-item" key={val.id}>
+                                <Link to={`/rankdetail/${JSON.stringify({id:val.id,rankName:val.name})}`} className="all-listening-item" key={val.id}>
                                     <div className="item-left">
                                         <img src={val.cover} alt=""/>
                                     </div>
@@ -50,7 +50,7 @@ class Discover extends Component {
                                         <div className="item-title">{val.name}</div>
                                         <div className="item-desc">{val.desc}</div>
                                     </div>
-                                </div>
+                                </Link>
                                 ))
                                     :
                                 ""

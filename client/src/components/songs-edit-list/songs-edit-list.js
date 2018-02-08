@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { addMusic,playThis,resetCurrent } from '../../redux/player.redux';
-import { markSongs,delSongs,beginPlay } from '../../redux/personal.redux';
+import { markSongs,delSongs,beginPlay } from '../../redux/publicSongs.redux';
 import QueueAnim from 'rc-queue-anim';
 import './song-edit-list.less'
 
@@ -113,12 +113,18 @@ class SongEditList extends Component {
                 <div className="song-edit-list" style={this.props.listStyle}>
                     <QueueAnim delay={300} type="top">
                     {
-                        this.props.data.map(v=>(
-                            <div key={v.src} className={ v.src === this.props.music.currentSong.src? "single-song current-played":"single-song"} >
+                        this.props.data.map((v,i)=>(
+                            <div key={v.id} className={ v.src === this.props.music.currentSong.src? "single-song current-played":"single-song"} >
                                 <div className="left">
                                     {
                                         this.state.edit?
                                             <div className={v.marked?"select selected":"select"} onClick={()=>{this.selectSongs(v)}}><div></div></div>
+                                            :
+                                            ""
+                                    }
+                                    {
+                                        this.props.order?
+                                            <div className="order">{i+1}</div>
                                             :
                                             ""
                                     }

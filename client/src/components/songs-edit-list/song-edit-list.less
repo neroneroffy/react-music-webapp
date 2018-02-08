@@ -81,6 +81,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: 12px;
+  z-index: 2500;
   .fontColor;
   box-shadow: 0 0px 5px #e0e0e0;
   .left{
@@ -132,12 +133,24 @@
     height: 50px;
     padding:8px 2.5% 0 2.5%;
     margin: 10px 0;
+
+
     .left{
       float: left;
       display: flex;
       justify-content: flex-start;
-      align-items: flex-start;
+      align-items: center;
       width: 85%;
+      .order{
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #fff;
+        text-align: center;
+        line-height: 14px;
+        font-size: 12px;
+        margin-right: 8px;
+      }
       .select{
         .select
       }
@@ -154,6 +167,18 @@
           color: #969696;
         }
       }
+    }
+    &:nth-child(1) .left .order{
+      background: #ff7122;
+      color: #fff;
+    };
+    &:nth-child(2) .left .order{
+      background: #ffa334;
+      color: #fff;
+    };
+    &:nth-child(3) .left .order{
+      background: #ffbf37;
+      color: #fff;
     }
     .right{
       width: 10%;

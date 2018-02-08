@@ -132,16 +132,13 @@ export function addMusic (data) {
 }
 export function delMusic (id) {
     let index = "";
-    console.log(id)
     songsData.forEach((v,i)=>{
         if(v.id === id){
             index = i
             console.log(index)
         }
     });
-    console.log(songsData)
     songsData.splice(index,1);
-    console.log(songsData)
     return dispatch=>{
         dispatch(delAction(songsData))
     }
@@ -153,14 +150,15 @@ export function playThis (data) {
     return (dispatch,getState)=>{
 
         dispatch(playThisAction(data));
-        if(getState().personal.play){
-            let songList = getState().personal.songList;
+        if(getState().publicSongs.play){
+            let songList = getState().publicSongs.songs;
             let currentSong =  getState().music.currentSong;
             songList.forEach((v,i)=>{
                 if(v.id === currentSong.id){
                     current = i
                 }
             });
+            console.log(current)
             if(current===songList.length-1){
                 current=-1
                 console.log(`复位${current}`);
@@ -171,10 +169,9 @@ export function playThis (data) {
 }
 export function playThisList(){
         return (dispatch,getState)=>{
-            let songList = getState().personal.songList
-            if(getState().personal.play){
+            let songList = getState().publicSongs.songs;
+            if(getState().publicSongs.play){
                 dispatch(playThisAction(songList[current+1]));
-
                 console.log(`现在播放的是第${current}首歌曲`);
                 console.log(`一共有${songList.length}首歌`);
 
@@ -184,7 +181,7 @@ export function playThisList(){
 
 export function resetCurrent () {
     return (dispatch,getState)=>{
-        let songList = getState().personal.songList
+        let songList = getState().publicSongs.songs
         let currentSong =  getState().music.currentSong
         songList.forEach((v,i)=>{
             if(v.id === currentSong.id){

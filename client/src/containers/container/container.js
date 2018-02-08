@@ -40,7 +40,7 @@ class Container extends Component {
                 <Route path={`/collectsonglistdetail/:id`} component={CollectSongs}/>
                 <Route path={`/search`} component={Search}/>
                 <Route path={`/ranking`} component={Ranking}/>
-                <Route path={`/rankdetail/:id`} component={RankingDetail}/>
+                <Route path={`/rankdetail/:data`} component={RankingDetail}/>
             </div>
         )
     }

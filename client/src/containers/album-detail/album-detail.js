@@ -9,8 +9,8 @@ import { getAlbumDetail } from '../../redux/album.redux';
 import { getComment,clearComment } from '../../redux/comment.redux';
 import { connect } from 'react-redux';
 function renderTabBar(props) {
-    return (<Sticky topOffset={-150}>
-        {({ style }) => <div style={{ ...style, top:150,zIndex: 1 }}><Tabs.DefaultTabBar {...props} /></div>}
+    return (<Sticky topOffset={-40}>
+        {({ style }) => <div style={{ ...style, top:40,zIndex: 1 }}><Tabs.DefaultTabBar {...props} /></div>}
     </Sticky>);
 }
 //let lastScrollY = 0;
@@ -36,16 +36,13 @@ class AlbumDetail extends Component {
     }
     componentDidMount(){
         this.props.getAlbumDetail(this.props.match.params.id);
-        window.addEventListener('scroll', this.albumScroll);
+        //window.addEventListener('scroll', this.albumScroll);
     }
     albumScroll(){
 
         if(window.scrollY>2){
 
-            this.refs.albumCover.style.position = "fixed";
-            this.refs.albumCover.style.top = "-30px";
-            this.refs.albumCover.style.zIndex = "2500";
-            document.getElementsByClassName('am-tabs-content-wrap')[0].style.marginTop='130px'
+            //document.getElementsByClassName('am-tabs-content-wrap')[0].style.marginTop='130px'
 /*            this.setState({
                 scaleStep:this.state.scaleStep-0.02
             })*/
@@ -63,7 +60,7 @@ class AlbumDetail extends Component {
             }
             lastScrollY = window.scrollY*/
 
-            document.getElementsByClassName('am-tabs-content-wrap')[0].style.marginTop='0px'
+            //document.getElementsByClassName('am-tabs-content-wrap')[0].style.marginTop='0px'
             this.refs.albumCover.style.position = "relative";
             this.refs.albumCover.style.top = "0";
 

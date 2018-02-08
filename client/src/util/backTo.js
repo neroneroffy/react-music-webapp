@@ -8,6 +8,8 @@ export function getRoute () {
 
     if(sessionStorage.getItem('route').indexOf("collectsonglistdetail")>0){
         return '/me'
+    }else if(sessionStorage.getItem('route').indexOf("ranking")>0){
+        return '/discover'
     }
     return sessionStorage.getItem('route')
 }

@@ -10,7 +10,7 @@ class Header extends Component {
         this.state = {
 
         };
-        this.goBack = this.goBack.bind(this)
+        this.goBack = this.goBack.bind(this);
         this.handleScroll = this.handleScroll.bind(this)
     }
     componentDidMount(){
@@ -18,8 +18,8 @@ class Header extends Component {
     }
     handleScroll(){
 
-        if(window.scrollY>10){
-            this.refs.header.style.background = "rgba(0,0,0,0.5)";
+        if(window.scrollY>80){
+            this.refs.header.style.background = "rgba(255,191,55,1)";
 
         }else{
             this.refs.header.style.background = "rgba(0,0,0,0)";

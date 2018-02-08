@@ -13,29 +13,17 @@ const STOP_PLAY = "STOP_PLAY";
 const DEL_SONG_LIST = "DEL_SONG_LIST";
 const initialState = {
     summary:"",
-    songList:"",
-    collectSongList:"",
-    play:false
+    collectSongList:""
 };
 
 export function personal( state=initialState,action ) {
     switch (action.type){
         case GET_SUMMARY:
             return { ...state,summary:action.payload };
-        case GET_SONGS:
-            return { ...state,songList:action.payload };
         case GET_SONG_LIST:
             return { ...state,collectSongList:action.payload };
         case DEL_SONG_LIST:
             return { ...state,collectSongList:action.payload };
-        case MARK_SONGS:
-            return { ...state,songList:action.payload };
-        case DEL_SONGS:
-            return { ...state,songList:action.payload };
-        case BEGIN_PLAY:
-            return { ...state,play:true };
-        case STOP_PLAY:
-            return { ...state,play:false };
         default:
             return state;
     }
@@ -47,30 +35,14 @@ function getSummaryAction(data) {
         payload:data
     }
 }
-function getSongsAction(data) {
-    return {
-        type:GET_SONGS,
-        payload:data
-    }
-}
+
 function getSongListAction(data) {
     return {
         type:GET_SONG_LIST,
         payload:data
     }
 }
-function markSongsAction(data){
-    return {
-        type:MARK_SONGS,
-        payload:data
-    }
-}
-function delSongsAction(data){
-    return {
-        type:DEL_SONGS,
-        payload:data
-    }
-}
+
 function delSongListAction(data){
     return {
         type:DEL_SONG_LIST,
@@ -88,19 +60,7 @@ export function getSummary(id) {
         })
     }
 }
-//获取收藏的歌曲列表
-export function getSongs(id,songListId) {
-    return dispatch=>{
-        //依据有没有歌单id判断请求哪个资源，这里把请求收藏的单曲和请求收藏的歌单内的单曲整合到一起
-       let url = songListId? `/mock/personal${id}/songsInSongList${songListId}.json` : `/mock/personal${id}/collectSongs.json`;
-        axios.get(url).then(res=>{
-            let data = res.data;
-            if(data.result){
-                dispatch(getSongsAction(data.data))
-            }
-        })
-    }
-}
+
 //获取收藏的歌单
 export function getCollectSongList(id) {
     return dispatch=>{
@@ -127,55 +87,4 @@ export function delCollectSongList(id,userId) {
         dispatch(delSongListAction(currentList))
     }
 }
-//选择歌曲时候给选中歌曲添加标记
-export function markSongs(id,all) {
-    return (dispatch,getState)=>{
-        let songList = getState().personal.songList;
-        songList.forEach(v=>{
-            if(!id && all){
-               v.marked = true
-            }else if(!id && !all){
-                v.marked = false
-            } else{
-                if(v.id === id){
-                    if(!v.marked){
 
-                        v.marked = true
-                    }else{
-                        v.marked = false
-                    }
-                }
-            }
-        });
-        dispatch(markSongsAction(songList))
-    }
-}
-export function delSongs() {
-    let canDel = true
-    return (dispatch,getState)=>{
-        let currentSong = getState().music.currentSong;
-        let markedSongs = getState().personal.songList.filter(v => v.marked);
-        markedSongs.forEach(v=>{
-
-            if(currentSong.src === v.src){
-                Toast.fail('要移除的歌曲中有正在播放的，不可移除', 1);
-                canDel = false
-            }
-        })
-        if(canDel){
-            //只保留marked为true的项
-            dispatch(delSongsAction( getState().personal.songList.filter(v => !v.marked)))
-
-        }
-    }
-}
-export function beginPlay() {
-    return {
-        type:BEGIN_PLAY
-    }
-}
-export function stopPlay() {
-    return {
-        type:STOP_PLAY
-    }
-}
