@@ -16,7 +16,7 @@ class ReactComponent extends Component {
         this.state = {}
     };
     componentDidMount(){
-       let data = JSON.parse(this.props.match.params.data);
+       let data = this.props.location.state;
        this.props.getRankDetail(data.id);
        let url = `/mock/discovery/ranking-detail${data.id}list1.json`
        this.props.getSongs(url)
@@ -25,7 +25,7 @@ class ReactComponent extends Component {
     render() {
         return (
             <div id="ranking-detail">
-                <Header text={`${JSON.parse(this.props.match.params.data).rankName}`}/>
+                <Header text={`${this.props.location.state.name}`}/>
                 {
                     this.props.discovery.rankDetail?
                         <div className="ranking-header">

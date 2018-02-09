@@ -25,7 +25,7 @@ class Ranking extends Component {
                             <div className="ranking-wrapper">
                                 {
                                     this.props.rankList.map(v=>(
-                                        <Link to={`/rankdetail/${JSON.stringify({id:v.id,rankName:v.name})}`} className="rank-item" key={v.id}>
+                                        <Link to={{pathname:`/rankdetail`,state:{id:v.id,name:v.name}}} className="rank-item" key={v.id}>
                                             <div className="left">
                                                 <img src={v.cover} alt="图片丢失了，呜呜呜"/>
                                             </div>

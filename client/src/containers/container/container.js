@@ -10,6 +10,7 @@ import CollectSongList from '../collect-song-list/collect-song-list';
 import Search from '../search/search';
 import Ranking from '../ranking/ranking';
 import RankingDetail from '../ranking-detail/ranking-detail';
+import StyleSongsList from '../style-songs-list/style-songs-list';
 
 import { setRoute } from '../../util/backTo'
 @withRouter
@@ -40,7 +41,8 @@ class Container extends Component {
                 <Route path={`/collectsonglistdetail/:id`} component={CollectSongs}/>
                 <Route path={`/search`} component={Search}/>
                 <Route path={`/ranking`} component={Ranking}/>
-                <Route path={`/rankdetail/:data`} component={RankingDetail}/>
+                <Route path={`/rankdetail`} component={RankingDetail}/>
+                <Route path={`/style-songs-list`} component={StyleSongsList}/>
             </div>
         )
     }

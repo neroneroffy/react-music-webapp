@@ -76,7 +76,7 @@ class Me extends Component {
                                     this.props.summary.mySongList.length === 0?
                                         <div className="no-list">暂时没有歌单，快来创建吧~</div>
                                         :
-                                        <MySongList data={this.props.summary.mySongList}/>
+                                        <MySongList data={this.props.summary.mySongList} allowDelete={true}/>
                                 }
 
                             </div>

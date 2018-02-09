@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import './my-song-list.less';
-import { Link } from 'react-router-dom';
+import { Link,withRouter } from 'react-router-dom';
 import QueueAnim from 'rc-queue-anim';
 import { Modal, Button } from 'antd-mobile';
 import { delCollectSongList } from '../../redux/personal.redux';
 import { connect } from 'react-redux';
-
+@withRouter
 @connect(
     state=>state,
     { delCollectSongList }
@@ -40,7 +40,14 @@ class MySongList extends Component {
             visible,
         });
     }*/;
-
+    componentDidMount(){
+        //如果是自己收藏的网站上已有的歌单，则不允许删除歌单内的歌曲。如果是自己新建的歌单，那么可以删除歌单内的歌曲
+        if(this.props.history.location.pathname === '/me'){
+            sessionStorage.setItem('isCustom',true)
+        }else{
+            sessionStorage.setItem('isCustom',false)
+        }
+    }
     render() {
         return (
             <div id="my-song-list">
@@ -58,9 +65,14 @@ class MySongList extends Component {
                                 </div>
 
                             </Link>
-                            <div className="right" onClick={()=>{this.deleteSongList(v.id)}}>
-                                删除
-                            </div>
+                            {
+                                this.props.allowDelete?
+                                    <div className="right" onClick={()=>{this.deleteSongList(v.id)}}>
+                                        删除
+                                    </div>
+                                    :
+                                    ""
+                            }
                         </div>
                         )
                     )

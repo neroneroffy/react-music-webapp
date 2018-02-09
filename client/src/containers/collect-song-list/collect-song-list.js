@@ -25,7 +25,7 @@ class CollectSongList extends Component {
                 <div className="collect-song-list-wrapper">
                     {
                         this.props.collectSongList?
-                            <MySongList data={this.props.collectSongList}/>
+                            <MySongList data={this.props.collectSongList} allowDelete={true}/>
                             :
                             ""
                     }

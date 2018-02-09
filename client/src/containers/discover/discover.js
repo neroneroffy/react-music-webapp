@@ -42,7 +42,7 @@ class Discover extends Component {
                             {
                                 this.props.data?
                                 this.props.data.ranking.map(val => (
-                                <Link to={`/rankdetail/${JSON.stringify({id:val.id,rankName:val.name})}`} className="all-listening-item" key={val.id}>
+                                <Link to={{pathname:`/rankdetail`,state:{id:val.id,name:val.name}}} className="all-listening-item" key={val.id}>
                                     <div className="item-left">
                                         <img src={val.cover} alt=""/>
                                     </div>
@@ -63,14 +63,14 @@ class Discover extends Component {
                         {
                             this.props.data?
                                 this.props.data.style.map(v=>(
-                                    <div className="style-item" key={v.id}>
+                                    <Link to={{pathname:`/style-songs-list`,state:{id:v.id,name:v.name}}} className="style-item" key={v.id}>
                                         <div className="cover">
                                             <img src={v.cover} alt="图片丢失了！呜呜呜"/>
                                         </div>
                                         <div className="title">
                                             {v.name}
                                         </div>
-                                    </div>
+                                    </Link>
                                 ))
                                 :
                                 ""

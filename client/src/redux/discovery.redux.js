@@ -3,10 +3,12 @@ const GET_DATA = "GET_DATA";
 const GET_RANK_LIST = "GET_RANK_LIST";
 const GET_RANK_DETAIL = "GET_RANK_DETAIL";
 const CLEAR_DETAIL = "CLEAR_DETAIL";
+const GET_STYLE_SONG_LIST = "GET_STYLE_SONG_LIST";
 const initialState = {
     data:"",
     rankList:"",
-    rankDetail:""
+    rankDetail:"",
+    styleSongsList:""
 };
 
 export function discovery(state = initialState,action) {
@@ -19,6 +21,8 @@ export function discovery(state = initialState,action) {
             return { ...state,rankDetail:action.payload };
         case CLEAR_DETAIL:
             return { ...state,rankDetail:"" };
+        case GET_STYLE_SONG_LIST:
+            return { ...state,styleSongsList:action.payload };
         default:
             return state;
     }
@@ -46,6 +50,13 @@ function getRankDetailAction(data) {
 function celarDetail() {
     return {
         type:CLEAR_DETAIL
+    }
+}
+
+function getStyleSongsListAction(data) {
+    return {
+        type:GET_STYLE_SONG_LIST,
+        payload:data
     }
 }
 export function getDiscoveryData() {
@@ -81,4 +92,16 @@ export function getRankDetail(id) {
         })
     }
 }
+
+export function getStyleSongsList(id) {
+    return dispatch =>{
+        axios.get(`/mock/discovery/style/styleSongList${id}.json`).then(response=>{
+            let res = response.data;
+            if(res.result){
+                dispatch(getStyleSongsListAction(res.data))
+            }
+        })
+    }
+}
+
 
