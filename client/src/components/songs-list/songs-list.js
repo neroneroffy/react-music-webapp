@@ -15,7 +15,7 @@ class SongsList extends Component {
     }
     //添加进播放列表
     addToList(data){
-        let isExist = false
+        let isExist = false;
         this.props.music.songs.map(v=>{
             if(data.src === v.src){
                 isExist = true
@@ -29,8 +29,11 @@ class SongsList extends Component {
     playThis(data){
         this.props.playThis(data)
     }
+    //收藏歌曲
+    collectSong(id){
+        console.log(id);
+    }
     shouldComponentUpdate(nextProps){
-
         if (nextProps === this.props){
             return false
         }
@@ -48,8 +51,9 @@ class SongsList extends Component {
                                     <div className="item-artist">{v.artist}</div>
                                 </div>
                                 <div className="item-right">
+                                    <div className="collect-song" onClick={()=>{this.collectSong(v.id)}}>收藏</div>
                                     <div className="item-add" onClick={()=>{this.addToList(v)}}>
-                                        <img src={require('../../icons/add.png')} alt=""/>
+                                        +
                                     </div>
                                 </div>
                             </div>

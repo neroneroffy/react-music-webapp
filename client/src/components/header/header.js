@@ -19,7 +19,7 @@ class Header extends Component {
     handleScroll(){
 
         if(window.scrollY>80){
-            this.refs.header.style.background = "rgba(255,191,55,1)";
+            this.refs.header.style.background = "rgb(246, 164, 22)";
 
         }else{
             this.refs.header.style.background = "rgba(0,0,0,0)";

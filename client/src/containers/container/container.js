@@ -11,6 +11,7 @@ import Search from '../search/search';
 import Ranking from '../ranking/ranking';
 import RankingDetail from '../ranking-detail/ranking-detail';
 import StyleSongsList from '../style-songs-list/style-songs-list';
+import StyleSongsListDetail from '../style-songs-list-detail/style-songs-list-detail';
 
 import { setRoute } from '../../util/backTo'
 @withRouter
@@ -43,6 +44,7 @@ class Container extends Component {
                 <Route path={`/ranking`} component={Ranking}/>
                 <Route path={`/rankdetail`} component={RankingDetail}/>
                 <Route path={`/style-songs-list`} component={StyleSongsList}/>
+                <Route path={`/style-songs-list-detail`} component={StyleSongsListDetail}/>
             </div>
         )
     }

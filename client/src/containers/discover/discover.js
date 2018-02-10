@@ -14,10 +14,16 @@ class Discover extends Component {
     constructor(props) {
         super(props)
         this.state = {
-        }
+        };
     }
     componentDidMount(){
         this.props.getDiscoveryData()
+    }
+    storeInfo(id,name){
+        let styleInfo={
+            id,name
+        };
+        sessionStorage.setItem("styleInfo",JSON.stringify(styleInfo))
     }
 
     render() {
@@ -63,7 +69,7 @@ class Discover extends Component {
                         {
                             this.props.data?
                                 this.props.data.style.map(v=>(
-                                    <Link to={{pathname:`/style-songs-list`,state:{id:v.id,name:v.name}}} className="style-item" key={v.id}>
+                                    <Link to="/style-songs-list"  onClick={()=>{this.storeInfo(v.id,v.name)}}  className="style-item" key={v.id}>
                                         <div className="cover">
                                             <img src={v.cover} alt="图片丢失了！呜呜呜"/>
                                         </div>

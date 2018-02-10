@@ -1,5 +1,52 @@
+@import "../../style/common.less";
 #style-songs-list{
   .songs-list-wrapper{
-    margin:40px 0 90px 0;
+    margin:50px 0 90px 0;
+    .list-item{
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      padding:5px 0;
+      .blank;
+      &:last-child{
+        border-bottom:none
+      }
+      .left{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        .cover{
+          width: 50px;
+          height: 50px;
+          border-radius: 5px;
+          overflow: hidden;
+          font-size: 0;
+          margin-right:10px;
+          img{
+            width: 50px;
+            height: 50px;
+          }
+        }
+        .left-right{
+          .title{
+            font-size: 14px;
+            .fontColor;
+          }
+          .num{
+            margin-top: 10px;
+            font-size: 12px;
+            color: #a5a5a5;
+          }
+        }
+      }
+      .right{
+        height: 60px;
+        line-height: 60px;
+        padding-left: 10px;
+        font-size: 14px;
+        color: #a2a2a2;
+      }
+    }
+
   }
 }

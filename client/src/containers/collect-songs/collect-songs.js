@@ -18,6 +18,7 @@ class CollectSongs extends Component {
         };
     }
     componentDidMount(){
+
         this.setState({
             userId:sessionStorage.getItem('userId'),
             isCustom:JSON.parse(sessionStorage.getItem('isCustom'))

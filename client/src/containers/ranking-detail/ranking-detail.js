@@ -36,7 +36,7 @@ class ReactComponent extends Component {
                 }
                 {
                     this.props.publicSongs.songs?
-                        <SongList data={this.props.publicSongs.songs} order={true} style={{"position":"sticky","top":"40px","left":"0"}} option={false}/>
+                        <SongList data={this.props.publicSongs.songs} order={true} style={{"position":"sticky","top":"40px","left":"0"}} option={false} allowCollect={true}/>
                         :
                         ""
                 }

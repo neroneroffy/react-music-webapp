@@ -3,7 +3,9 @@ import './style-songs-list.less';
 import YellowHeader from '../../components/yellow-header/yellow-header';
 import { connect } from 'react-redux';
 import { getStyleSongsList } from '../../redux/discovery.redux';
-import MySongList from '../../components/my-song-list/my-song-list';
+import { Link,withRouter } from 'react-router-dom';
+import QueueAnim from 'rc-queue-anim';
+
 @connect(
     state=>state.discovery,
     { getStyleSongsList }
@@ -11,20 +13,45 @@ import MySongList from '../../components/my-song-list/my-song-list';
 class StyleSongsList extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            styleInfo:""
+        }
     };
     componentDidMount(){
-        this.props.getStyleSongsList(this.props.location.state.id);
-        console.log(this.props);
+        this.setState({
+            styleInfo:JSON.parse(sessionStorage.getItem("styleInfo"))
+        },()=>{
+            this.props.getStyleSongsList(this.state.styleInfo.id);
+        });
+
     }
     render() {
         return (
             <div id="style-songs-list">
-                <YellowHeader title={`${this.props.location.state.name}`}/>
+                <YellowHeader title={`${this.state.styleInfo.name}`}/>
                 <div className="songs-list-wrapper">
                     {
                         this.props.styleSongsList?
-                            <MySongList data={this.props.styleSongsList}/>
+                            <div className="style-songs-list-wrapper">
+                                <QueueAnim delay={300} type="top">
+                                    {
+                                        this.props.styleSongsList.map(v=>(
+                                                <div className="list-item" key={v.id}>
+                                                    <Link to={{pathname:`/style-songs-list-detail`,state:{id:v.id,name:v.name}}} className="left">
+                                                        <div className="cover">
+                                                            <img src={v.cover} alt=""/>
+                                                        </div>
+                                                        <div className="left-right">
+                                                            <div className="title">{v.name}</div>
+                                                            <div className="num">{v.num} 首歌曲</div>
+                                                        </div>
+                                                    </Link>
+                                                </div>
+                                            )
+                                        )
+                                    }
+                                </QueueAnim>
+                            </div>
                             :
                             ""
                     }

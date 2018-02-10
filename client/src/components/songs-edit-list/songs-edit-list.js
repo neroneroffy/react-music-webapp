@@ -133,8 +133,21 @@ class SongEditList extends Component {
                                         <div className="artist">{v.artist}</div>
                                     </div>
                                 </div>
+
+
                                 <div className="right" onClick={()=>{this.addToList(v)}}>
-                                    +
+                                    {
+                                        this.props.allowCollect?
+                                            <div className="collect-song-btn">
+                                                收藏
+                                            </div>
+                                            :
+                                            ""
+                                    }
+                                    <div className="add-to-list">
+                                        +
+                                    </div>
+
                                 </div>
 
                             </div>

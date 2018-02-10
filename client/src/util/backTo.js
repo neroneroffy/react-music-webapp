@@ -10,6 +10,8 @@ export function getRoute () {
         return '/me'
     }else if(sessionStorage.getItem('route').indexOf("ranking")>0){
         return '/discover'
+    }else if(sessionStorage.getItem('route').indexOf("style-songs-list-detail")>0){
+        return '/discover'
     }
     return sessionStorage.getItem('route')
 }
