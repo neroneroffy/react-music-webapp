@@ -1,4 +1,5 @@
 @import "../../style/common.less";
+
 .select{
   div{
     width: 10px;
@@ -128,12 +129,15 @@
   }
 }
 .song-edit-list{
-
   .single-song{
     height: 50px;
     padding:8px 2.5% 0 2.5%;
     margin: 10px 0;
-
+    background: #fff;
+    &:active{
+      background: #f7f7f7;
+      transition:all .1s ease-in;
+    }
 
     .left{
       float: left;

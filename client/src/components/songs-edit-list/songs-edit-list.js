@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { addMusic,playThis,resetCurrent } from '../../redux/player.redux';
 import { markSongs,delSongs,beginPlay } from '../../redux/publicSongs.redux';
 import QueueAnim from 'rc-queue-anim';
+import CollectSongsPicker from '../../components/collect-songs-picker/collect-songs-picker';
+import { fixedBody,looseBody } from '../../util/preventBackgroundScroll';
+import axios from 'axios';
 import './song-edit-list.less'
 
 @connect(
@@ -14,13 +17,16 @@ class SongEditList extends Component {
         super(props);
         this.state = {
             edit:false,
-            allSelected:false
+            allSelected:false,
+            clickToCollect:false,
+            songsList:""
         };
         this.edit = this.edit.bind(this);
         this.done = this.done.bind(this);
         this.selectAll = this.selectAll.bind(this);
         this.removeSong = this.removeSong.bind(this);
         this.beginPlay = this.beginPlay.bind(this);
+        this.closeCollect = this.closeCollect.bind(this);
     }
     edit(){
         this.setState({
@@ -73,7 +79,35 @@ class SongEditList extends Component {
             this.props.addMusic(data)
         }
     }
-
+    //收藏歌曲
+    collectSong(id){
+        //请求收藏的歌单
+        axios.get(`/mock/personal${sessionStorage.getItem("userId")}/collectSongList.json`).then(res=>{
+            let data = res.data;
+            if(data.result){
+                this.setState({
+                    songsList:data.data
+                });
+            }else{
+                this.setState({
+                    songsList:"0"
+                })
+            }
+            this.setState({
+                clickToCollect:true
+            },()=>{
+                fixedBody()
+            })
+        })
+    }
+    //关闭收藏弹出层
+    closeCollect(){
+        this.setState({
+            clickToCollect:false
+        },()=>{
+            looseBody()
+        })
+    }
 
     render() {
         let allSelected = false;
@@ -138,7 +172,7 @@ class SongEditList extends Component {
                                 <div className="right" onClick={()=>{this.addToList(v)}}>
                                     {
                                         this.props.allowCollect?
-                                            <div className="collect-song-btn">
+                                            <div className="collect-song-btn"  onClick={()=>{this.collectSong(v.id)}}>
                                                 收藏
                                             </div>
                                             :
@@ -155,6 +189,12 @@ class SongEditList extends Component {
                     }
                     </QueueAnim>
                 </div>
+                <CollectSongsPicker
+                    show={this.state.clickToCollect}
+                    data={this.state.songsList}
+                    closeCollect={this.closeCollect}
+                />
+
             </div>
 
         )

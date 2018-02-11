@@ -7,6 +7,9 @@ import Header from '../../components/header/header';
 import CommentList from '../../components/comment-list/comment-list';
 import { getAlbumDetail } from '../../redux/album.redux';
 import { getComment,clearComment } from '../../redux/comment.redux';
+import CollectSongsPicker from '../../components/collect-songs-picker/collect-songs-picker';
+import { fixedBody,looseBody } from '../../util/preventBackgroundScroll';
+import axios from 'axios';
 import { connect } from 'react-redux';
 function renderTabBar(props) {
     return (<Sticky topOffset={-40}>
@@ -29,15 +32,50 @@ class AlbumDetail extends Component {
                 { title: "评论" },
             ],
             pageNum:1,
-            scaleStep:1
+            scaleStep:1,
+            clickToCollect:false,
+            songsList:""
         };
         this.tabChange = this.tabChange.bind(this);
-        this.albumScroll = this.albumScroll.bind(this)
+        this.albumScroll = this.albumScroll.bind(this);
+        this.closeCollect = this.closeCollect.bind(this);
+        this.collectSong = this.collectSong.bind(this);
     }
     componentDidMount(){
         this.props.getAlbumDetail(this.props.match.params.id);
         //window.addEventListener('scroll', this.albumScroll);
     }
+    collectSong(id){
+        console.log(id)
+        //请求收藏的歌单
+
+        axios.get(`/mock/personal${sessionStorage.getItem("userId")}/collectSongList.json`).then(res=>{
+            let data = res.data;
+            if(data.result){
+                this.setState({
+                    songsList:data.data
+                });
+            }else{
+                this.setState({
+                    songsList:"0"
+                })
+            }
+            this.setState({
+                clickToCollect:true
+            },()=>{
+                fixedBody()
+            })
+        })
+    }
+    //关闭收藏弹出层
+    closeCollect(){
+        this.setState({
+            clickToCollect:false
+        },()=>{
+            looseBody()
+        })
+    }
+
     albumScroll(){
 
         if(window.scrollY>2){
@@ -112,7 +150,7 @@ class AlbumDetail extends Component {
                                       tabBarUnderlineStyle={{width:"25%",marginLeft:'4%'}}
                                       renderTabBar={renderTabBar}
                                 >
-                                    <SongsList songs={this.props.album.detail.songs}></SongsList>
+                                    <SongsList songs={this.props.album.detail.songs} getCollectSongId = {this.collectSong} doNotPicker={true}/>
                                     <div className="intro">
                                         {this.props.album.detail.introduction}
                                     </div>
@@ -125,6 +163,11 @@ class AlbumDetail extends Component {
                         :
                         ""
                 }
+                <CollectSongsPicker
+                    show={this.state.clickToCollect}
+                    data={this.state.songsList}
+                    closeCollect={this.closeCollect}
+                />
             </div>
         )
     }
