@@ -5,6 +5,7 @@ import MySongList from '../../components/my-song-list/my-song-list';
 import { Link } from 'react-router-dom';
 import './me.less'
 import { connect } from 'react-redux';
+import {HOST} from '../../const/host'
 const prompt = Modal.prompt;
 @connect(
     state=>state.personal,
@@ -40,7 +41,7 @@ class Me extends Component {
                 {
                     this.props.summary?
                         <div className="me-wrapper">
-                            <div className="personal">
+                            <Link to={`${HOST}/user-center/${this.state.userId}`} className="personal">
                                 <div className="left">
                                     <div className="avatar">
                                         <img src={this.props.summary.avatar} alt=""/>
@@ -50,14 +51,14 @@ class Me extends Component {
                                 <div className="right">
                                     <Icon type="right"></Icon>
                                 </div>
-                            </div>
-                            <Link to={`/collectsongs`} className="personal-item">
+                            </Link>
+                            <Link to={`${HOST}/collectsongs`} className="personal-item">
                                 <div className="title">收藏的单曲</div>
                                 <div className="right">
                                     <Icon type="right"></Icon>
                                 </div>
                             </Link>
-                            <Link to={`/collectsonglist/${this.state.userId}`} className="personal-item">
+                            <Link to={`${HOST}/collectsonglist/${this.state.userId}`} className="personal-item">
                                 <div className="title">收藏的歌单</div>
                                 <div className="right">
                                     <Icon type="right"></Icon>

@@ -27,9 +27,10 @@ class Search extends Component {
                     <div className="search-btn">
                         <Icon type="search" size="sm" />
                     </div>
-
                 </div>
+
                 <SongsList songs={this.state.result}/>
+                <div className="search-info">具体搜索功能需要后台，暂时放一个静态的搜索结果</div>
             </div>
         )
     }

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {API} from "../const/host";
 const GET_DATA = "GET_DATA";
 const GET_RANK_LIST = "GET_RANK_LIST";
 const GET_RANK_DETAIL = "GET_RANK_DETAIL";
@@ -61,7 +62,7 @@ function getStyleSongsListAction(data) {
 }
 export function getDiscoveryData() {
     return dispatch=>{
-        axios.get(`/mock/discovery/discovery.json`).then(response=>{
+        axios.get(`${API}/mock/discovery/discovery.json`).then(response=>{
             let res = response.data;
             if(res.result){
                 dispatch(getDiscoveryDataAction(res.data))
@@ -72,7 +73,7 @@ export function getDiscoveryData() {
 
 export function getRankList() {
     return dispatch=>{
-        axios.get(`/mock/discovery/ranking-list.json`).then(response=>{
+        axios.get(`${API}/mock/discovery/ranking-list.json`).then(response=>{
             let res = response.data;
             if(res.result){
                 dispatch(getRankListAction(res.data))
@@ -84,7 +85,7 @@ export function getRankList() {
 export function getRankDetail(id) {
     return dispatch=>{
         dispatch(celarDetail());
-        axios.get(`/mock/discovery/ranking-detail${id}.json`).then(response=>{
+        axios.get(`${API}/mock/discovery/ranking-detail${id}.json`).then(response=>{
             let res = response.data;
             if(res.result){
                 dispatch(getRankDetailAction(res.data));
@@ -95,7 +96,7 @@ export function getRankDetail(id) {
 
 export function getStyleSongsList(id) {
     return dispatch =>{
-        axios.get(`/mock/discovery/style/styleSongList${id}.json`).then(response=>{
+        axios.get(`${API}/mock/discovery/style/styleSongList${id}.json`).then(response=>{
             let res = response.data;
             if(res.result){
                 dispatch(getStyleSongsListAction(res.data))

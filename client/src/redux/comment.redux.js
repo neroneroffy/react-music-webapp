@@ -2,6 +2,7 @@
  * Created by haita on 2018/1/14 0014.
  */
 import axios from 'axios';
+import {API} from "../const/host";
 const GET_COMMENT = "GET_COMMENT";
 const CLEAR_COMMENT = "CLEAR_COMMENT";
 const NO_COMMENT = "NO_COMMENT";
@@ -53,7 +54,7 @@ function noMoreCommentAction() {
 
 export function getComment (id,pageNum) {
     return dispatch=>{
-        axios.get(`/mock/albumDetail/comment${id}/content${pageNum}.json`).then(res=>{
+        axios.get(`${API}/mock/albumDetail/comment${id}/content${pageNum}.json`).then(res=>{
             let data = res.data;
             if(data.result){
                 dispatch(getCommentAction(data.data))

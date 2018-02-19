@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import './ranking-detail.less';
-import { Icon,Picker } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { getRankDetail } from '../../redux/discovery.redux';
 import { getSongs } from '../../redux/publicSongs.redux';
 import SongList from '../../components/songs-edit-list/songs-edit-list';
-import Header from '../../components/header/header'
+import Header from '../../components/header/header';
+import { HOST } from "../../const/host";
+
 @connect(
     state=>state,
     { getRankDetail,getSongs }
@@ -18,7 +19,7 @@ class ReactComponent extends Component {
     componentDidMount(){
        let data = this.props.location.state;
        this.props.getRankDetail(data.id);
-       let url = `/mock/discovery/ranking-detail${data.id}list1.json`
+       let url = `${HOST}/mock/discovery/ranking-detail${data.id}list1.json`
        this.props.getSongs(url)
 
     }

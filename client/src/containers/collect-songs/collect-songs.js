@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import YellowHeader from '../../components/yellow-header/yellow-header'
 import { connect } from 'react-redux';
 import { getSongs } from '../../redux/publicSongs.redux';
-import SongEditList from '../../components/songs-edit-list/songs-edit-list'
+import SongEditList from '../../components/songs-edit-list/songs-edit-list';
+import { HOST } from "../../const/host";
 import './collect-songs.less'
 
 @connect(
@@ -24,14 +25,14 @@ class CollectSongs extends Component {
             isCustom:JSON.parse(sessionStorage.getItem('isCustom'))
         },()=>{
             //请求收藏的单曲
-            let url = `/mock/personal${this.state.userId}/collectSongs.json`;
+            let url = `${HOST}/mock/personal${this.state.userId}/collectSongs.json`;
             //请求收藏的或者创建的歌单内的单曲
             if(this.props.match.params.id){
                 //如果是用户自己创建的歌单，请求数据
                 if(this.state.isCustom){
-                    url = `/mock/personal${this.state.userId}/songsInSongList${this.props.match.params.id}.json`;
+                    url = `${HOST}/mock/personal${this.state.userId}/songsInSongList${this.props.match.params.id}.json`;
                 }else{
-                    url = `/mock/personal${this.state.userId}/notCustomSongsInSongList${this.props.match.params.id}.json`;
+                    url = `${HOST}/mock/personal${this.state.userId}/notCustomSongsInSongList${this.props.match.params.id}.json`;
                 }
 
             }

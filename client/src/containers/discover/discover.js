@@ -6,6 +6,7 @@ import Title from '../../components/title';
 import WhiteSpace from '../../components/whiteSpace';
 import { getDiscoveryData } from '../../redux/discovery.redux';
 import { connect } from 'react-redux';
+import {HOST} from '../../const/host'
 @connect(
     state=>state.discovery,
     { getDiscoveryData }
@@ -30,13 +31,13 @@ class Discover extends Component {
         return (
             <div id="discover">
                 <div className="discover-wrapper">
-                    <Link to="/search" className="search-route">
+                    <Link to={`${HOST}/search`} className="search-route">
                         <div className="search-inner">
                             <Icon type="search" size="sm" />
                             <div>输入歌曲名</div>
                         </div>
                     </Link>
-                    <Title title="排行榜" linkTo="/ranking"/>
+                    <Title title="排行榜" linkTo={`${HOST}/ranking`}/>
                     <div className="all-listening">
                         <Carousel
                             autoplay={true}
@@ -48,7 +49,7 @@ class Discover extends Component {
                             {
                                 this.props.data?
                                 this.props.data.ranking.map(val => (
-                                <Link to={{pathname:`/rankdetail`,state:{id:val.id,name:val.name}}} className="all-listening-item" key={val.id}>
+                                <Link to={{pathname:`${HOST}/rankdetail`,state:{id:val.id,name:val.name}}} className="all-listening-item" key={val.id}>
                                     <div className="item-left">
                                         <img src={val.cover} alt=""/>
                                     </div>
@@ -69,7 +70,7 @@ class Discover extends Component {
                         {
                             this.props.data?
                                 this.props.data.style.map(v=>(
-                                    <Link to="/style-songs-list"  onClick={()=>{this.storeInfo(v.id,v.name)}}  className="style-item" key={v.id}>
+                                    <Link to={`${HOST}/style-songs-list`}  onClick={()=>{this.storeInfo(v.id,v.name)}}  className="style-item" key={v.id}>
                                         <div className="cover">
                                             <img src={v.cover} alt="图片丢失了！呜呜呜"/>
                                         </div>

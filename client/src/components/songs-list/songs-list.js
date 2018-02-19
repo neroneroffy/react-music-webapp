@@ -7,6 +7,7 @@ import CollectSongsPicker from '../../components/collect-songs-picker/collect-so
 import { addMusic,playThis } from '../../redux/player.redux';
 import { fixedBody,looseBody } from '../../util/preventBackgroundScroll';
 import axios from 'axios';
+import { API } from '../../const/host'
 @connect(
     state=>state,
     { addMusic,playThis,getCollectSongList }
@@ -46,7 +47,7 @@ class SongsList extends Component {
         }
 
         //请求收藏的歌单
-        axios.get(`/mock/personal${sessionStorage.getItem("userId")}/collectSongList.json`).then(res=>{
+        axios.get(`${API}/mock/personal${sessionStorage.getItem("userId")}/collectSongList.json`).then(res=>{
             let data = res.data;
             if(data.result){
                 this.setState({

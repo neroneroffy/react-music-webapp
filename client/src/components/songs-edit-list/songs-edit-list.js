@@ -6,6 +6,7 @@ import QueueAnim from 'rc-queue-anim';
 import CollectSongsPicker from '../../components/collect-songs-picker/collect-songs-picker';
 import { fixedBody,looseBody } from '../../util/preventBackgroundScroll';
 import axios from 'axios';
+import { HOST } from "../../const/host";
 import './song-edit-list.less'
 
 @connect(
@@ -82,7 +83,7 @@ class SongEditList extends Component {
     //收藏歌曲
     collectSong(id){
         //请求收藏的歌单
-        axios.get(`/mock/personal${sessionStorage.getItem("userId")}/collectSongList.json`).then(res=>{
+        axios.get(`${HOST}/mock/personal${sessionStorage.getItem("userId")}/collectSongList.json`).then(res=>{
             let data = res.data;
             if(data.result){
                 this.setState({

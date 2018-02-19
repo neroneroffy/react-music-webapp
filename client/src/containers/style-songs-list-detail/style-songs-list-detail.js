@@ -3,7 +3,9 @@ import './style-songs-list-detail.less';
 import YellowHeader from '../../components/yellow-header/yellow-header'
 import { connect } from 'react-redux';
 import { getSongs } from '../../redux/publicSongs.redux';
-import SongEditList from '../../components/songs-edit-list/songs-edit-list'
+import SongEditList from '../../components/songs-edit-list/songs-edit-list';
+import { HOST } from "../../const/host";
+
 @connect(
     state=>state.publicSongs,
     { getSongs }
@@ -16,7 +18,7 @@ class StyleSongsListDetail extends Component {
     componentDidMount(){
 
         //请求风格歌单内的单曲
-        let url = `/mock/discovery/style/styleSongListDetail${this.props.location.state.id}.json`;
+        let url = `${HOST}/mock/discovery/style/styleSongListDetail${this.props.location.state.id}.json`;
         this.props.getSongs(url)
 
     }

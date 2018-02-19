@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom'
 import './top-tabbar.less';
-
+import { HOST } from '../../const/host'
 
 class TopTabbar extends Component {
     constructor(props) {
@@ -10,17 +10,17 @@ class TopTabbar extends Component {
             entry:[
                 {
                     name:"曲库",
-                    path:`/repertoire`,
+                    path:`${HOST}/repertoire`,
                     icon:require('../../icons/music.png')
                 },
                 {
                     name:"我的",
-                    path:`/me`,
+                    path:`${HOST}/me`,
                     icon:require('../../icons/user.png')
                 },
                 {
                     name:"发现",
-                    path:`/discover`,
+                    path:`${HOST}/discover`,
                     icon:require('../../icons/headphones.png')
                 }
 

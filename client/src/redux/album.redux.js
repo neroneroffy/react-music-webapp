@@ -2,6 +2,7 @@
  * Created by haita on 2018/1/14 0014.
  */
 import axios from 'axios';
+import { API } from '../const/host'
 const GET_ALBUM_DETAIL = 'GET_ALBUM_DETAIL';
 const initialState = {
     album:[],
@@ -27,7 +28,7 @@ function getAlbumDetailAction(data) {
 
 export function getAlbumDetail(id) {
     return dispatch=>{
-        axios.get(`/mock/albumDetail/detail${id}.json`).then(res=>{
+        axios.get(`${API}/mock/albumDetail/detail${id}.json`).then(res=>{
             let data = res.data;
             if(data.result){
 

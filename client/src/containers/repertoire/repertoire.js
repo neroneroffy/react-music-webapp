@@ -7,6 +7,7 @@ import SongsList from '../../components/songs-list/songs-list';
 import {fetchBanner,fetchRecommend,fetchReSongsData} from '../../redux/repertoire.redux';
 import { connect } from 'react-redux';
 import './repertoire.less';
+import {HOST} from '../../const/host'
 @connect(
     state=>state.repertoire,
     {fetchBanner,fetchRecommend,fetchReSongsData}
@@ -38,7 +39,7 @@ class Repertoire extends Component {
                                 {this.props.bannerData.map(val => (
                                     <Link
                                         key={val}
-                                        to="/albumdetail/3"
+                                        to={`${HOST}/albumdetail/3`}
                                         style={{ display: 'inline-block', width: '100%'}}
                                     >
                                         <img
@@ -67,7 +68,7 @@ class Repertoire extends Component {
                             <div className="recommend-wrapper">
                                 {
                                     this.props.recommendData.map(v=>(
-                                        <Link to={`/songlistdetail/${v.id}`} key={v.src} className="recommend-item">
+                                        <Link to={`${HOST}/songlistdetail/${v.id}`} key={v.src} className="recommend-item">
                                             <div>
                                                 <img src={v.src} alt=""/>
                                             </div>

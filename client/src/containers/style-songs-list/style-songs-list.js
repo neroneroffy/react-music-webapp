@@ -3,8 +3,9 @@ import './style-songs-list.less';
 import YellowHeader from '../../components/yellow-header/yellow-header';
 import { connect } from 'react-redux';
 import { getStyleSongsList } from '../../redux/discovery.redux';
-import { Link,withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import QueueAnim from 'rc-queue-anim';
+import { HOST } from '../../const/host'
 
 @connect(
     state=>state.discovery,
@@ -37,7 +38,7 @@ class StyleSongsList extends Component {
                                     {
                                         this.props.styleSongsList.map(v=>(
                                                 <div className="list-item" key={v.id}>
-                                                    <Link to={{pathname:`/style-songs-list-detail`,state:{id:v.id,name:v.name}}} className="left">
+                                                    <Link to={{pathname:`${HOST}/style-songs-list-detail`,state:{id:v.id,name:v.name}}} className="left">
                                                         <div className="cover">
                                                             <img src={v.cover} alt=""/>
                                                         </div>

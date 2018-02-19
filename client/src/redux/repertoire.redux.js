@@ -2,6 +2,7 @@
  * Created by haita on 2018/1/10 0010.
  */
 import axios from 'axios';
+import {API} from "../const/host";
 
 const FETCH_BANNER = "FETCH_BANNER";
 const FETCH_RECOMMEND = "FETCH_RECOMMEND";
@@ -48,7 +49,7 @@ function reSongsData(data) {
 //获取banner
 export function fetchBanner() {
     return dispatch=>{
-        axios.get('/mock/banner.json').then(res=>{
+        axios.get(`${API}/mock/banner.json`).then(res=>{
             let data = res.data;
             if(data.result){
                 dispatch(bannerdata(data.data))
@@ -60,7 +61,7 @@ export function fetchBanner() {
 //获取每日推荐
 export function fetchRecommend() {
     return dispatch=>{
-        axios.get('/mock/recommend.json').then(res=>{
+        axios.get(`${API}/mock/recommend.json`).then(res=>{
             let data = res.data;
             if(data.result){
                 dispatch(recommendData(data.data))
@@ -72,7 +73,7 @@ export function fetchRecommend() {
 //获取曲库好歌
 export function fetchReSongsData() {
     return dispatch=>{
-        axios.get('/mock/songs.json').then(res=>{
+        axios.get(`${API}/mock/songs.json`).then(res=>{
             let data = res.data;
             if(data.result){
                 dispatch(reSongsData(data.data))

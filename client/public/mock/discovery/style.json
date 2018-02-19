@@ -4,7 +4,7 @@
     {
       "name":"摇滚",
       "id":"1",
-      "cover":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517921181972&di=b1252d151a0f1190697388fbcf3ba885&imgtype=0&src=http%3A%2F%2Fphotocdn.sohu.com%2F20080804%2FImg258579351.jpg"
+      "cover":"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3373266493,113597133&fm=27&gp=0.jpg"
     },
     {
       "name":"爵士",
@@ -17,9 +17,9 @@
       "cover":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517920343628&di=c917da3dec9433e47dbff204306b56c5&imgtype=0&src=http%3A%2F%2Fimg0.pclady.com.cn%2Fpclady%2F1701%2F13%2F1656297_14.jpg"
     },
     {
-      name:"柔情",
-      id:"4",
-      cover:"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=452589178,87996854&fm=27&gp=0.jpg"
+      "name":"柔情",
+      "id":"4",
+      "cover":"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=452589178,87996854&fm=27&gp=0.jpg"
     },
     {
       "name":"经典",

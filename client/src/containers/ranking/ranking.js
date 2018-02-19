@@ -4,6 +4,7 @@ import YellowHeader from '../../components/yellow-header/yellow-header';
 import { Link } from 'react-router-dom';
 import { getRankList } from '../../redux/discovery.redux';
 import { connect } from 'react-redux';
+import {HOST} from '../../const/host'
 @connect(
     state=>state.discovery,
     { getRankList }
@@ -25,7 +26,7 @@ class Ranking extends Component {
                             <div className="ranking-wrapper">
                                 {
                                     this.props.rankList.map(v=>(
-                                        <Link to={{pathname:`/rankdetail`,state:{id:v.id,name:v.name}}} className="rank-item" key={v.id}>
+                                        <Link to={{pathname:`${HOST}/rankdetail`,state:{id:v.id,name:v.name}}} className="rank-item" key={v.id}>
                                             <div className="left">
                                                 <img src={v.cover} alt="图片丢失了，呜呜呜"/>
                                             </div>

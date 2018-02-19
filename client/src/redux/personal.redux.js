@@ -2,7 +2,8 @@
  * Created by haita on 2018/1/15 0015.
  */
 import axios from 'axios';
-import { Toast } from 'antd-mobile'
+import { HOST } from '../const/host'
+import {API} from "../const/host";
 const GET_SUMMARY = "GET_SUMMARY";
 const GET_SONGS = "GET_SONGS";
 const GET_SONG_LIST = "GET_SONG_LIST";
@@ -52,7 +53,7 @@ function delSongListAction(data){
 //获取基本信息
 export function getSummary(id) {
     return dispatch=>{
-        axios.get(`/mock/personal${id}/summary.json`).then(res=>{
+        axios.get(`${API}/mock/personal${id}/summary.json`).then(res=>{
             let data = res.data;
             if(data.result){
                 dispatch(getSummaryAction(data.data))
@@ -64,7 +65,7 @@ export function getSummary(id) {
 //获取收藏的歌单
 export function getCollectSongList(id) {
     return dispatch=>{
-        axios.get(`/mock/personal${id}/collectSongList.json`).then(res=>{
+        axios.get(`${API}/mock/personal${id}/collectSongList.json`).then(res=>{
             let data = res.data;
             if(data.result){
                 dispatch(getSongListAction(data.data))
@@ -75,7 +76,7 @@ export function getCollectSongList(id) {
 //删除歌单
 export function delCollectSongList(id,userId) {
     return (dispatch,getState)=>{
-        let currentList = window.location.pathname === '/me'?getState().personal.summary.mySongList : getState().personal.collectSongList;
+        let currentList = window.location.pathname === `${HOST}/me`?getState().personal.summary.mySongList : getState().personal.collectSongList;
         console.log(currentList);
         let delIndex = currentList.findIndex((value,index,arr)=>{
 
