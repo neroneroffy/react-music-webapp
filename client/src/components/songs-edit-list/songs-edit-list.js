@@ -6,6 +6,7 @@ import QueueAnim from 'rc-queue-anim';
 import CollectSongsPicker from '../../components/collect-songs-picker/collect-songs-picker';
 import { fixedBody,looseBody } from '../../util/preventBackgroundScroll';
 import axios from 'axios';
+import Ball from '../ball/ball';
 import { HOST } from "../../const/host";
 import './song-edit-list.less'
 
@@ -20,7 +21,12 @@ class SongEditList extends Component {
             edit:false,
             allSelected:false,
             clickToCollect:false,
-            songsList:""
+            songsList:"",
+            terminalX:"",
+            terminalY:"",
+            originX:"",
+            originY:"",
+            balls:[]
         };
         this.edit = this.edit.bind(this);
         this.done = this.done.bind(this);
@@ -28,6 +34,7 @@ class SongEditList extends Component {
         this.removeSong = this.removeSong.bind(this);
         this.beginPlay = this.beginPlay.bind(this);
         this.closeCollect = this.closeCollect.bind(this);
+        this.complete = this.complete.bind(this);
     }
     edit(){
         this.setState({
@@ -69,16 +76,38 @@ class SongEditList extends Component {
         this.props.playThis(data)
     }
     //添加进播放列表
-    addToList(data){
-        let isExist = false
+    addToList(i,data){
+        let isExist = false;
         this.props.music.songs.map(v=>{
             if(data.src === v.src){
                 isExist = true
             }
         })
         if(!isExist){
-            this.props.addMusic(data)
+            this.props.addMusic(data);
+            let ball = {
+                id: `${i}`,
+                terminalX:30,
+                terminalY:document.getElementsByClassName('picture')[0].getBoundingClientRect().top+10,
+                originX:document.getElementsByClassName('add-to-list')[i].getBoundingClientRect().left-5,
+                originY:document.getElementsByClassName('add-to-list')[i].getBoundingClientRect().top+10
+            };
+            
+            this.state.balls.push(ball);
+            this.setState({},()=>{
+                this.refs.ball.init()
+            })
+
         }
+    }
+    complete(id){
+        this.state.balls.forEach((v,i)=>{
+            if(v.id === id){
+                this.state.balls.splice(i,1);
+                this.setState({});
+                return
+            }
+        })
     }
     //收藏歌曲
     collectSong(id){
@@ -170,7 +199,7 @@ class SongEditList extends Component {
                                 </div>
 
 
-                                <div className="right" onClick={()=>{this.addToList(v)}}>
+                                <div className="right" >
                                     {
                                         this.props.allowCollect?
                                             <div className="collect-song-btn"  onClick={()=>{this.collectSong(v.id)}}>
@@ -179,7 +208,7 @@ class SongEditList extends Component {
                                             :
                                             ""
                                     }
-                                    <div className="add-to-list">
+                                    <div className="add-to-list" onClick={()=>{this.addToList(i,v)}}>
                                         +
                                     </div>
 
@@ -190,6 +219,17 @@ class SongEditList extends Component {
                     }
                     </QueueAnim>
                 </div>
+                {
+                    this.state.balls.map(v=>(
+                        <Ball ref="ball"
+                              key={v.id}
+                              terminal={{x:v.terminalX,y:v.terminalY}}
+                              origin={{x:v.originX,y:v.originY}}
+                              id={v.id}
+                              complete={this.complete}
+                        />
+                    ))
+                }
                 <CollectSongsPicker
                     show={this.state.clickToCollect}
                     data={this.state.songsList}

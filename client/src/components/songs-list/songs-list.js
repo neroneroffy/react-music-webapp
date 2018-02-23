@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './songs-list.less';
 import QueueAnim from 'rc-queue-anim';
 import { connect } from 'react-redux';
+import Ball from '../ball/ball';
 import { getCollectSongList } from '../../redux/personal.redux';
 import CollectSongsPicker from '../../components/collect-songs-picker/collect-songs-picker';
 import { addMusic,playThis } from '../../redux/player.redux';
@@ -17,14 +18,19 @@ class SongsList extends Component {
         super(props);
         this.state = {
             clickToCollect:false,
-            songsList:""
+            songsList:"",
+            terminalX:"",
+            terminalY:"",
+            originX:"",
+            originY:"",
+            balls:[]
         };
         this.addToList = this.addToList.bind(this);
         this.closeCollect = this.closeCollect.bind(this);
-
+        this.complete = this.complete.bind(this);
     }
     //添加进播放列表
-    addToList(data){
+    addToList(i,data){
         let isExist = false;
         this.props.music.songs.map(v=>{
             if(data.src === v.src){
@@ -32,8 +38,29 @@ class SongsList extends Component {
             }
         });
         if(!isExist){
-            this.props.addMusic(data)
+            this.props.addMusic(data);
+            let ball = {
+                id: `${i}`,
+                terminalX:30,
+                terminalY:document.getElementsByClassName('picture')[0].getBoundingClientRect().top+10,
+                originX:document.getElementsByClassName('item-add')[i].getBoundingClientRect().left+10,
+                originY:document.getElementsByClassName('item-add')[i].getBoundingClientRect().top+10
+            };
+            this.state.balls.push(ball);
+            this.setState({},()=>{
+                this.refs.ball.init()
+            })
         }
+
+    }
+    complete(id){
+        this.state.balls.forEach((v,i)=>{
+            if(v.id === id){
+                this.state.balls.splice(i,1);
+                this.setState({});
+                return
+            }
+        })
     }
     //点击播放歌曲
     playThis(data){
@@ -41,6 +68,7 @@ class SongsList extends Component {
     }
     //收藏歌曲
     collectSong(id){
+
         if(this.props.doNotPicker){
             this.props.getCollectSongId(id)
             return
@@ -74,18 +102,12 @@ class SongsList extends Component {
         })
     }
 
-/*    shouldComponentUpdate(nextProps){
-        if (nextProps === this.props){
-            return false
-        }
-        return true
-    }*/
     render() {
         return (
             <div id="songs-list">
                 <QueueAnim delay={300} type="top">
                     {
-                        this.props.songs.map(v=>(
+                        this.props.songs.map((v,i)=>(
                             <div className={ v.src === this.props.music.currentSong.src? "songs-item current-played":"songs-item"} key={v.id} >
                                 <div className="item-left" onClick={()=>{this.playThis(v)}}>
                                     <div className="item-title">{v.name}</div>
@@ -93,7 +115,7 @@ class SongsList extends Component {
                                 </div>
                                 <div className="item-right">
                                     <div className="collect-song"  onClick={()=>{this.collectSong(v.id)}}>收藏</div>
-                                    <div className="item-add" onClick={()=>{this.addToList(v)}}>
+                                    <div className="item-add" onClick={()=>{this.addToList(i,v)}}>
                                         +
                                     </div>
                                 </div>
@@ -102,6 +124,17 @@ class SongsList extends Component {
                         ))
                     }
                 </QueueAnim>
+                {
+                    this.state.balls.map(v=>(
+                        <Ball ref="ball"
+                              key={v.id}
+                              terminal={{x:v.terminalX,y:v.terminalY}}
+                              origin={{x:v.originX,y:v.originY}}
+                              id={v.id}
+                              complete={this.complete}
+                        />
+                    ))
+                }
                 <CollectSongsPicker
                     show={this.state.clickToCollect}
                     data={this.state.songsList}

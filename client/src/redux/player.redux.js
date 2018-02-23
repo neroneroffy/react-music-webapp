@@ -124,10 +124,10 @@ export function getMusic () {
     }
 }
 export function addMusic (data) {
-    songsData.push(data)
+    songsData.push(data);
     return dispatch=>{
         dispatch(addAction(data))
-        Toast.success('加入播放列表成功', 1);
+        //Toast.success('加入播放列表成功', 1);
     }
 }
 export function delMusic (id) {
