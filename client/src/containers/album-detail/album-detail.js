@@ -150,6 +150,7 @@ class AlbumDetail extends Component {
                                       tabBarUnderlineStyle={{width:"25%",marginLeft:'4%'}}
                                       renderTabBar={renderTabBar}
                                 >
+
                                     <SongsList songs={this.props.album.detail.songs} getCollectSongId = {this.collectSong} doNotPicker={true}/>
                                     <div className="intro">
                                         {this.props.album.detail.introduction}

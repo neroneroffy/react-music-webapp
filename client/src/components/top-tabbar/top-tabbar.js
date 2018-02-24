@@ -14,15 +14,15 @@ class TopTabbar extends Component {
                     icon:require('../../icons/music.png')
                 },
                 {
+                    name:"发现",
+                    path:`${HOST}/discover`,
+                    icon:require('../../icons/headphones.png')
+                },
+                {
                     name:"我的",
                     path:`${HOST}/me`,
                     icon:require('../../icons/user.png')
                 },
-                {
-                    name:"发现",
-                    path:`${HOST}/discover`,
-                    icon:require('../../icons/headphones.png')
-                }
 
             ]
         }

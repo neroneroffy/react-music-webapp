@@ -92,7 +92,7 @@ class SongEditList extends Component {
                 originX:document.getElementsByClassName('add-to-list')[i].getBoundingClientRect().left-5,
                 originY:document.getElementsByClassName('add-to-list')[i].getBoundingClientRect().top+10
             };
-            
+
             this.state.balls.push(ball);
             this.setState({},()=>{
                 this.refs.ball.init()

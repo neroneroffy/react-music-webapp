@@ -1,3 +1,72 @@
+@import '../../style/common';
 #user-center{
+  .user-center-wrapper{
+    margin-top: 40px;
+    .avatar-upload{
+      padding-top: 25px;
+      height: 155px;
+      /*background: url("/mock/personal5/userInfoBg.jpg");*/
+      .top{
+        font-size: 0;
+        width: 70px;
+        height: 70px;
+        margin:0 auto;
+        border-radius: 50%;
+        overflow: hidden;
+        border:3px solid #fff;
+        img{
+          width: 70px;
+          height: 70px;
+        }
+      }
+      .bottom{
+        position: relative;
+        margin:0 auto;
+        height: 70px;
+        line-height: 70px;
+        text-align: center;
+        overflow: hidden;
+        .fontColor;
+        input{
+          opacity: 0;
+          width: 100%;
+          position: absolute;
+          top:20px;
+          left:40%;
+        }
+        span{
+          height: 40px;
+          width: 100px;
+          margin:0 auto;
+          border:1px solid #ccc;
+          padding:6px 10px;
+          border-radius: 5px;
+        }
+      }
+    }
+    .base-info{
+      padding:10px 2.5%;
+      .base-info-item{
+        height: 40px;
+        line-height: 40px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 14px;
+        .fontColor;
+        span{
+          width: 10%;
+        }
+        input{
+          width: 90%;
+          .fontColor;
+          margin-left: 10px;
+          padding-left: 5px;
+          border:none;
+          border-bottom: 1px solid #ececec;
 
+        }
+      }
+    }
+  }
 }

@@ -49,6 +49,7 @@ class Me extends Component {
                                     <div className="nick-name">{this.props.summary.nickName}</div>
                                 </div>
                                 <div className="right">
+                                    <span>修改资料</span>
                                     <Icon type="right"></Icon>
                                 </div>
                             </Link>

@@ -39,12 +39,13 @@ class SongsList extends Component {
         });
         if(!isExist){
             this.props.addMusic(data);
+            console.log(i);
             let ball = {
                 id: `${i}`,
                 terminalX:30,
                 terminalY:document.getElementsByClassName('picture')[0].getBoundingClientRect().top+10,
                 originX:document.getElementsByClassName('item-add')[i].getBoundingClientRect().left+10,
-                originY:document.getElementsByClassName('item-add')[i].getBoundingClientRect().top+10
+                originY:window.location.pathname.indexOf("albumdetail")>0?document.getElementsByClassName('item-add')[i].getBoundingClientRect().top-213.5:document.getElementsByClassName('item-add')[i].getBoundingClientRect().top+10
             };
             this.state.balls.push(ball);
             this.setState({},()=>{
