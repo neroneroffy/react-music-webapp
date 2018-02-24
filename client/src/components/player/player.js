@@ -29,7 +29,7 @@ class Player extends Component {
             currentMusic:{},
             isPlayed:false,
             playDetail:false,
-            mode:"order"
+            mode:"顺序"
         };
         this.last = this.last.bind(this);
         this.play = this.play.bind(this);
@@ -98,19 +98,19 @@ class Player extends Component {
 
     playMode(){
         switch (this.state.mode){
-            case "order":
+            case "顺序":
                 this.setState({
-                    mode:'random'
+                    mode:'随机'
                 });
                 return;
-            case "random":
+            case "随机":
                 this.setState({
-                    mode:'single'
+                    mode:'单曲'
                 });
                 return;
-            case "single":
+            case "单曲":
                 this.setState({
-                    mode:'order'
+                    mode:'顺序'
                 });
                 return;
         }

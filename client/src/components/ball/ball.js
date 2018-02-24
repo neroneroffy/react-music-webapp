@@ -4,10 +4,10 @@ class Ball extends Component{
     init=()=>{
         this.refs.ballY.style.top=`${this.props.origin.y}px`;
         this.refs.ballY.style.left=`${this.props.origin.x}px`;
-        console.log(this.refs.ballY.style.top);
-        if(this.props.origin.y>this.props.terminal.y){
+
+/*        if(this.props.terminal.y-this.props.origin.y<40){
             this.refs.ballY.style.transition = "all .4s cubic-bezier(0,.3,.55,1.62)"
-        }
+        }*/
         setTimeout(()=>{
             this.fall()
         },0)

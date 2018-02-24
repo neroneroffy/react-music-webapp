@@ -39,14 +39,16 @@ class SongsList extends Component {
         });
         if(!isExist){
             this.props.addMusic(data);
-            console.log(i);
             let ball = {
                 id: `${i}`,
                 terminalX:30,
-                terminalY:document.getElementsByClassName('picture')[0].getBoundingClientRect().top+10,
+                //由于使用antd-mobile的Tabs组件，导致获取起点终纵坐标不正确，这里计算了一下
+                terminalY:window.location.pathname.indexOf("albumdetail")>0?document.getElementsByClassName('picture')[0].getBoundingClientRect().top+window.scrollY-213.5:document.getElementsByClassName('picture')[0].getBoundingClientRect().top,
                 originX:document.getElementsByClassName('item-add')[i].getBoundingClientRect().left+10,
-                originY:window.location.pathname.indexOf("albumdetail")>0?document.getElementsByClassName('item-add')[i].getBoundingClientRect().top-213.5:document.getElementsByClassName('item-add')[i].getBoundingClientRect().top+10
+                originY:window.location.pathname.indexOf("albumdetail")>0?document.getElementsByClassName('item-add')[i].getBoundingClientRect().top+window.scrollY-213.5:document.getElementsByClassName('item-add')[i].getBoundingClientRect().top+10
             };
+            console.log(window.scrollY);
+            console.log(ball.originY,ball.terminalY)
             this.state.balls.push(ball);
             this.setState({},()=>{
                 this.refs.ball.init()
