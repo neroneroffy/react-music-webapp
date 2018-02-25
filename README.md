@@ -3,7 +3,7 @@
 > 技术：React16，Redux，React-Router，WebPack
 
 #### [项目演示](http://akongkong.cn/music)
-现在的数据都是是自己mock的，开发后台的时候会对接真实数据，由于搜索、收藏歌单、新建歌单、删除歌单、收藏单曲、移除收藏单曲等功能需要后台配合，所以现在都是纯前端展示，不具备功能
+会点ps,所以自己设计了页面和交互。现在的数据都是是自己mock的，开发后台的时候会对接真实数据，由于搜索、收藏歌单、新建歌单、删除歌单、收藏单曲、移除收藏单曲等功能需要后台配合，所以现在都是纯前端展示，不具备功能
 ### 动图演示：
 
 ![img](https://github.com/capslocktao/react-music-webapp/blob/master/newshow.gif)
@@ -53,6 +53,7 @@
 
 ### Redux设计
 ![img](https://github.com/capslocktao/react-music-webapp/blob/master/client/redux.png)
+
 首先，这次设计的redux貌似不合理。。有几个没必要放到store里共享的状态也放进去了。大家当反面教材吧。。引入redux-thunk中间件，大部分axios请求都放到了redux中。
 store内的状态分为8个模块：
 - **album** ：专辑模块信息（专辑列表、专辑详情、专辑内歌曲、专辑介绍）；
