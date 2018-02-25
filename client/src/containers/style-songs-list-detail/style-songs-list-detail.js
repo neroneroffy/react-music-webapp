@@ -28,7 +28,7 @@ class StyleSongsListDetail extends Component {
                 <YellowHeader title={`${this.props.location.state.name}`}/>
                 {
                     this.props.songs?
-                        <SongEditList allowCollect={true} option={JSON.parse(sessionStorage.getItem('isCustom'))} data={this.props.songs} style={{"position":"fixed","top":"40px","left":"0"}} listStyle={{"marginTop":"90px"}} />
+                        <SongEditList allowCollect={true} option={false} data={this.props.songs} style={{"position":"fixed","top":"40px","left":"0"}} listStyle={{"marginTop":"90px"}} />
                         :
                         ""
                 }

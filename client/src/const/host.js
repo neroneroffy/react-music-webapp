@@ -1,2 +1,2 @@
-export const HOST = "/music";
-export const API = "/music";
+export const HOST = "";
+export const API = "";

@@ -60,15 +60,8 @@ class Player extends Component {
                 playedLeft:played.getBoundingClientRect().left,
                 volumnLeft:totalVolume.getBoundingClientRect().left
             });
-            //
         });
-        //在组件最开始渲染时候，默认播放播放列表第一首歌
 
-/*        this.setState({
-            currentMusic:this.props.info[0]
-        },()=>{
-
-        });*/
 
         //设置初始音量
         this.refs.volumeProgress.style.width = "50%";
@@ -81,6 +74,8 @@ class Player extends Component {
     componentWillReceiveProps(nextProps){
         //当播放器当前没有播放歌曲时候，点击歌曲列表的某一首歌，开始播放
         if(nextProps.currentSong !== this.state.currentMusic && nextProps.currentSong !== undefined){
+            this.refs.played.style.width = 0;
+            this.refs.buffered.style.width =0;
             this.setState({
                 currentMusic:nextProps.currentSong,
                 angle:0
@@ -233,11 +228,11 @@ class Player extends Component {
                 if(this.props.play){
                     this.props.playThisList()
                 }else{
-                    if(this.state.mode === 'order'){
+                    if(this.state.mode === '顺序'){
                         this.next()
-                    }else if(this.state.mode === 'random'){
+                    }else if(this.state.mode === '随机'){
                         this.random()
-                    }else if(this.state.mode === 'single'){
+                    }else if(this.state.mode === '单曲'){
                         this.setState({
                             angle:0
                         });
@@ -255,6 +250,7 @@ class Player extends Component {
 
         let current = "";
         let songs = [];
+
         if(this.props.play){
             songs = this.props.songs
         }else{

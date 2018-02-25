@@ -47,7 +47,7 @@ class CollectSongs extends Component {
                 <YellowHeader title={this.props.match.params.id?"歌单详情":"收藏的歌曲"}/>
                 {
                     this.props.songs?
-                        <SongEditList option={JSON.parse(sessionStorage.getItem('isCustom'))} data={this.props.songs} style={{"position":"fixed","top":"40px","left":"0"}} listStyle={{"marginTop":"90px"}} />
+                        <SongEditList option={true} data={this.props.songs} style={{"position":"fixed","top":"40px","left":"0"}} listStyle={{"marginTop":"90px"}} />
                         :
                         ""
                 }
