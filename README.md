@@ -5,6 +5,7 @@
 #### [项目演示](http://akongkong.cn/music)
 现在的数据都是是自己mock的，开发后台的时候会对接真实数据，由于搜索、收藏歌单、新建歌单、删除歌单、收藏单曲、移除收藏单曲等功能需要后台配合，所以现在都是纯前端展示，不具备功能
 * 动图演示：
+<br/>
 ![img](https://github.com/capslocktao/react-music-webapp/blob/master/newshow.gif)
 ### 项目描述
 项目基于四个业务模块：**播放器、曲库、发现、个人**。这些模块中包含了一些基础组件来支撑业务逻辑：
