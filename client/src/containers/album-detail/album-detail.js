@@ -10,6 +10,7 @@ import { getComment,clearComment } from '../../redux/comment.redux';
 import CollectSongsPicker from '../../components/collect-songs-picker/collect-songs-picker';
 import { fixedBody,looseBody } from '../../util/preventBackgroundScroll';
 import axios from 'axios';
+import { API } from "../../const/host";
 import { connect } from 'react-redux';
 function renderTabBar(props) {
     return (<Sticky topOffset={-40}>
@@ -49,7 +50,7 @@ class AlbumDetail extends Component {
         console.log(id)
         //请求收藏的歌单
 
-        axios.get(`/mock/personal${sessionStorage.getItem("userId")}/collectSongList.json`).then(res=>{
+        axios.get(`${API}/mock/personal${sessionStorage.getItem("userId")}/collectSongList.json`).then(res=>{
             let data = res.data;
             if(data.result){
                 this.setState({
