@@ -1,5 +1,8 @@
 ﻿# React音乐webApp(react技术栈)
 
+## 说明：需要cd到client文件夹下安装依赖（npm install）,再 npm start 启动项目
+server文件夹与backstage当时是打算开发后台的，但后来搁置了，目前没用
+
 > 技术：React16，Redux，React-Router，WebPack
 
 #### [项目演示](http://akongkong.cn/music)
